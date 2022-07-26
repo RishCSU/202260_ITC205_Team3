@@ -75,8 +75,7 @@ public class Item implements Serializable {
 
 		else 
 			throw new RuntimeException(String.format("Item: cannot borrow item while item is in state: %s", state));
-		
-		
+
 	}
 
 
