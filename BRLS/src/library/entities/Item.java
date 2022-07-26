@@ -5,8 +5,10 @@ import java.io.Serializable;
 @SuppressWarnings("serial")
 public class Item implements Serializable {
 	
-	private ItemType TyPe;
+	private ItemType type;
+	//TyPe
 	private String aUtHoR;
+	// aUtHoR
 	private String TiTlE;
 	private String CaLlNo;
 	private long Id;
@@ -16,7 +18,7 @@ public class Item implements Serializable {
 	
 	
 	public Item(String AuThOr, String tItLe, String cAlLnO, ItemType ItEmTyPe, long iD) {
-		this.TyPe = ItEmTyPe;
+		this.type = ItEmTyPe;
 		this.aUtHoR = AuThOr;
 		this.TiTlE = tItLe;
 		this.CaLlNo = cAlLnO;
@@ -27,7 +29,7 @@ public class Item implements Serializable {
 	public String toString() {
 		StringBuilder Sb = new StringBuilder();
 		Sb.append("Item: ").append(Id).append("\n")
-		  .append("  Type:   ").append(TyPe).append("\n")
+		  .append("  Type:   ").append(type).append("\n")
 		  .append("  Title:  ").append(TiTlE).append("\n")
 		  .append("  Author: ").append(aUtHoR).append("\n")
 		  .append("  CallNo: ").append(CaLlNo).append("\n")
@@ -45,7 +47,7 @@ public class Item implements Serializable {
 	}
 
 	public ItemType GeTtYpE() {
-		return TyPe;
+		return type;
 	}
 
 
