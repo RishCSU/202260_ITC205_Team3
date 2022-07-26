@@ -49,18 +49,18 @@ public class Calendar {
 	}
 
 	public synchronized Date getDueDate(int loanPeriod) {
-		Date nOw = getDate();
+		Date now = getDate();
 		calendar.add(java.util.Calendar.DATE, loanPeriod);
-		Date dUeDaTe = calendar.getTime();
-		calendar.setTime(nOw);
-		return dUeDaTe;
+		Date dueDate = calendar.getTime();
+		calendar.setTime(now);
+		return dueDate;
 	}
 	
 	public synchronized long getDaysDifference(Date targetDate) {
 		
-		long Diff_Millis = getDate().getTime() - targetDate.getTime();
-	    long Diff_Days = TimeUnit.DAYS.convert(Diff_Millis, TimeUnit.MILLISECONDS);
-	    return Diff_Days;
+		long differenceInMillisecond = getDate().getTime() - targetDate.getTime();
+	    long differenceInDays = TimeUnit.DAYS.convert(differenceInMillisecond, TimeUnit.MILLISECONDS);
+	    return differenceInDays;
 	}
 
 }
