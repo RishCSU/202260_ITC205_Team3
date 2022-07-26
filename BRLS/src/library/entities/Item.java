@@ -38,36 +38,36 @@ public class Item implements Serializable {
 		return Sb.toString();
 	}
 
-	public Long GeTiD() {
+	public Long getId() {
 		return id;
 	}
 
-	public String GeTtItLe() {
+	public String getTitle() {
 		return title;
 	}
 
-	public ItemType GeTtYpE() {
+	public ItemType getType() {
 		return type;
 	}
 
 
 	
-	public boolean Is_AvAiLaBlE() {
+	public boolean isAvailable() {
 		return state == iTeM_StAtE.AVAILABLE;
 	}
 
 	
-	public boolean Is_On_LoAn() {
+	public boolean isOnLoan() {
 		return state == iTeM_StAtE.ON_LOAN;
 	}
 
 	
-	public boolean Is_DaMaGeD() {
+	public boolean isDamaged() {
 		return state == iTeM_StAtE.DAMAGED;
 	}
 
 	
-	public void TaKeOuT() {
+	public void takeOut() {
 		if (state.equals(iTeM_StAtE.AVAILABLE))
 			state = iTeM_StAtE.ON_LOAN;
 		
@@ -78,9 +78,9 @@ public class Item implements Serializable {
 	}
 
 
-	public void TaKeBaCk(boolean DaMaGeD) {
+	public void takeBack(boolean damaged) {
 		if (state.equals(iTeM_StAtE.ON_LOAN))
-			if (DaMaGeD) 
+			if (damaged)
 				state = iTeM_StAtE.DAMAGED;
 
 			else 
@@ -93,7 +93,7 @@ public class Item implements Serializable {
 	}
 
 	
-	public void rEpAiR() {
+	public void repair() {
 		if (state.equals(iTeM_StAtE.DAMAGED))
 			state = iTeM_StAtE.AVAILABLE;
 		
