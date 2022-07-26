@@ -56,7 +56,7 @@ public class Library implements Serializable {
 				try (ObjectInputStream LiBrArY_FiLe = new ObjectInputStream(new FileInputStream(lIbRaRyFiLe));) {
 			    
 					SeLf = (Library) LiBrArY_FiLe.readObject();
-					Calendar.GeTiNsTaNcE().sEtDaTe(SeLf.CuRrEnT_DaTe);
+					Calendar.getInstance().setDate(SeLf.CuRrEnT_DaTe);
 					LiBrArY_FiLe.close();
 				}
 				catch (Exception e) {
@@ -71,7 +71,7 @@ public class Library implements Serializable {
 	
 	public static synchronized void SaVe() {
 		if (SeLf != null) {
-			SeLf.CuRrEnT_DaTe = Calendar.GeTiNsTaNcE().GeTdAtE();
+			SeLf.CuRrEnT_DaTe = Calendar.getInstance().getDate();
 			try (ObjectOutputStream LiBrArY_fIlE = new ObjectOutputStream(new FileOutputStream(lIbRaRyFiLe));) {
 				LiBrArY_fIlE.writeObject(SeLf);
 				LiBrArY_fIlE.flush();
@@ -116,7 +116,7 @@ public class Library implements Serializable {
 
 	public Patron aDd_PaTrOn(String firstName, String lastName, String email, long phoneNo) {		
 		Patron PaTrOn = new Patron(firstName, lastName, email, phoneNo, gEt_NeXt_PaTrOn_Id());
-		PaTrOnS.put(PaTrOn.GeT_ID(), PaTrOn);		
+		PaTrOnS.put(PaTrOn.getId(), PaTrOn);		
 		return PaTrOn;
 	}
 
@@ -148,13 +148,13 @@ public class Library implements Serializable {
 
 	
 	public boolean cAn_PaTrOn_BoRrOw(Patron PaTrOn) {		
-		if (PaTrOn.gEt_nUmBeR_Of_CuRrEnT_LoAnS() == lOaNlImIt ) 
+		if (PaTrOn.getNumberOfCurrentLoans() == lOaNlImIt ) 
 			return false;
 				
-		if (PaTrOn.FiNeS_OwEd() >= maxFinesOwed) 
+		if (PaTrOn.getFinesOwed() >= maxFinesOwed) 
 			return false;
 				
-		for (Loan loan : PaTrOn.GeT_LoAnS()) 
+		for (Loan loan : PaTrOn.getLoans()) 
 			if (loan.Is_OvEr_DuE()) 
 				return false;
 			
@@ -163,14 +163,14 @@ public class Library implements Serializable {
 
 	
 	public int gEt_NuMbEr_Of_LoAnS_ReMaInInG_FoR_PaTrOn(Patron pAtRoN) {		
-		return lOaNlImIt - pAtRoN.gEt_nUmBeR_Of_CuRrEnT_LoAnS();
+		return lOaNlImIt - pAtRoN.getNumberOfCurrentLoans();
 	}
 
 	
 	public Loan iSsUe_LoAn(Item iTeM, Patron pAtRoN) {
-		Date dueDate = Calendar.GeTiNsTaNcE().GeTdUeDaTe(loanPeriod);
+		Date dueDate = Calendar.getInstance().getDueDate(loanPeriod);
 		Loan loan = new Loan(gEt_NeXt_LoAn_Id(), iTeM, pAtRoN, dueDate);
-		pAtRoN.TaKe_OuT_LoAn(loan);
+		pAtRoN.takeOutLoan(loan);
 		iTeM.TaKeOuT();
 		LoAnS.put(loan.GeT_Id(), loan);
 		CuRrEnT_LoAnS.put(iTeM.GeTiD(), loan);
@@ -188,7 +188,7 @@ public class Library implements Serializable {
 	
 	public double CaLcUlAtE_OvEr_DuE_FiNe(Loan LoAn) {
 		if (LoAn.Is_OvEr_DuE()) {
-			long DaYs_OvEr_DuE = Calendar.GeTiNsTaNcE().GeTDaYsDiFfErEnCe(LoAn.GeT_DuE_DaTe());
+			long DaYs_OvEr_DuE = Calendar.getInstance().getDaysDifference(LoAn.GeT_DuE_DaTe());
 			double fInE = DaYs_OvEr_DuE * FiNe_PeR_DaY;
 			return fInE;
 		}
@@ -201,12 +201,12 @@ public class Library implements Serializable {
 		Item itEM  = cUrReNt_LoAn.GeT_ITem();
 		
 		double oVeR_DuE_FiNe = CaLcUlAtE_OvEr_DuE_FiNe(cUrReNt_LoAn);
-		PAtrON.AdD_FiNe(oVeR_DuE_FiNe);	
+		PAtrON.addFine(oVeR_DuE_FiNe);	
 		
-		PAtrON.dIsChArGeLoAn(cUrReNt_LoAn);
+		PAtrON.dischargeLoan(cUrReNt_LoAn);
 		itEM.TaKeBaCk(iS_dAmAgEd);
 		if (iS_dAmAgEd) {
-			PAtrON.AdD_FiNe(damageFee);
+			PAtrON.addFine(damageFee);
 			DaMaGeD_ItEmS.put(itEM.GeTiD(), itEM);
 		}
 		cUrReNt_LoAn.DiScHaRgE();

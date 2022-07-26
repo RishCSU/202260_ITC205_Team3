@@ -26,7 +26,7 @@ public class Loan implements Serializable {
 	
 	public void UpDaTeStAtUs() {
 		if (StAtE == lOaN_sTaTe.CURRENT &&
-			Calendar.GeTiNsTaNcE().GeTdAtE().after(DaTe)) 
+			Calendar.getInstance().getDate().after(DaTe)) 
 			this.StAtE = lOaN_sTaTe.OVER_DUE;			
 		
 	}
@@ -52,8 +52,8 @@ public class Loan implements Serializable {
 
 		StringBuilder sb = new StringBuilder();
 		sb.append("Loan:  ").append(LoAn_Id).append("\n")
-		  .append("  Borrower ").append(PaTrON.GeT_ID()).append(" : ")
-		  .append(PaTrON.GeT_FiRsT_NaMe()).append(" ").append(PaTrON.GeT_LaSt_NaMe()).append("\n")
+		  .append("  Borrower ").append(PaTrON.getId()).append(" : ")
+		  .append(PaTrON.getFirstName()).append(" ").append(PaTrON.getLastName()).append("\n")
 		  .append("  Item ").append(ItEm.GeTiD()).append(" : " )
 		  .append(ItEm.GeTtYpE()).append("\n")
 		  .append(ItEm.GeTtItLe()).append("\n")
