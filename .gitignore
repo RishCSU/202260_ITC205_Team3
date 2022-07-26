@@ -6,12 +6,6 @@
 
 # BlueJ files
 *.ctxt
-# Mac files
-*.DS
-*.idea/
-*.iml
-*library.obj
-*out/
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
