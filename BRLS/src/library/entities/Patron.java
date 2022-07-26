@@ -67,21 +67,19 @@ public class Patron implements Serializable {
 
 	
 	public void takeOutLoan(Loan loan) {
-		if (!currentLoans.containsKey(loan.GeT_Id())) 
+		if (!currentLoans.containsKey(loan.GeT_Id())) {
 			currentLoans.put(loan.GeT_Id(), loan);
-		
-		else 
+		} else {
 			throw new RuntimeException("Duplicate loan added to member");
-				
+		}		
 	}
 
 	public void dischargeLoan(Loan loan) {
-		if (currentLoans.containsKey(loan.GeT_Id())) 
+		if (currentLoans.containsKey(loan.GeT_Id())) {
 			currentLoans.remove(loan.GeT_Id());
-		
-		else 
+		} else {
 			throw new RuntimeException("No such loan held by member");
-				
+		}		
 	}
 	
 	public String getLastName() {
@@ -99,17 +97,16 @@ public class Patron implements Serializable {
 	}
 	
 	public double payFine(double paymentAmount) {
-		if (paymentAmount < 0) 
+		if (paymentAmount < 0) {
 			throw new RuntimeException("Member.payFine: amount must be positive");
-		
+		}
 		double change = 0;
 		if (paymentAmount > finesOwing) {
 			change = paymentAmount - finesOwing;
 			finesOwing = 0;
-		}
-		else 
+		} else { 
 			finesOwing -= paymentAmount;
-		
+		}
 		return change;
 	}
 
