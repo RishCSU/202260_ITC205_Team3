@@ -30,8 +30,7 @@ public class Calendar {
 	        calendar.set(java.util.Calendar.MINUTE, 0);  
 	        calendar.set(java.util.Calendar.SECOND, 0);  
 	        calendar.set(java.util.Calendar.MILLISECOND, 0);
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}	
 	}
@@ -42,8 +41,7 @@ public class Calendar {
 	        calendar.set(java.util.Calendar.SECOND, 0);  
 	        calendar.set(java.util.Calendar.MILLISECOND, 0);
 			return calendar.getTime();
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}	
 	}
