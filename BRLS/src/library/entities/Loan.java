@@ -24,7 +24,7 @@ public class Loan implements Serializable {
 	}
 
 	
-	public void UpDaTeStAtUs() {
+	public void updateStatus() {
 		if (state == LoanState.CURRENT &&
 			Calendar.getInstance().getDate().after(dueDate))
 			this.state = LoanState.OVER_DUE;
@@ -32,17 +32,17 @@ public class Loan implements Serializable {
 	}
 
 	
-	public boolean Is_OvEr_DuE() {
+	public boolean isOverDue() {
 		return state == LoanState.OVER_DUE;
 	}
 
 	
-	public Long GeT_Id() {
+	public Long getId() {
 		return loanId;
 	}
 
 
-	public Date GeT_DuE_DaTe() {
+	public Date getDueDate() {
 		return dueDate;
 	}
 	
@@ -54,26 +54,26 @@ public class Loan implements Serializable {
 		sb.append("Loan:  ").append(loanId).append("\n")
 		  .append("  Borrower ").append(patron.getId()).append(" : ")
 		  .append(patron.getFirstName()).append(" ").append(patron.getLastName()).append("\n")
-		  .append("  Item ").append(item.GeTiD()).append(" : " )
-		  .append(item.GeTtYpE()).append("\n")
-		  .append(item.GeTtItLe()).append("\n")
+		  .append("  Item ").append(item.getId()).append(" : " )
+		  .append(item.getType()).append("\n")
+		  .append(item.getTitle()).append("\n")
 		  .append("  DueDate: ").append(sdf.format(dueDate)).append("\n")
 		  .append("  State: ").append(state);
 		return sb.toString();
 	}
 
 
-	public Patron GeT_PaTRon() {
+	public Patron getPatron() {
 		return patron;
 	}
 
 
-	public Item GeT_ITem() {
+	public Item getItem() {
 		return item;
 	}
 
 
-	public void DiScHaRgE() {
+	public void discharge() {
 		state = LoanState.DISCHARGED;
 	}
 
