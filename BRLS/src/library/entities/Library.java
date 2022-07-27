@@ -171,7 +171,7 @@ public class Library implements Serializable {
 		Date dueDate = Calendar.getInstance().getDueDate(loanPeriod);
 		Loan loan = new Loan(gEt_NeXt_LoAn_Id(), iTeM, pAtRoN, dueDate);
 		pAtRoN.takeOutLoan(loan);
-		iTeM.TaKeOuT();
+		iTeM.takeOut();
 		LoAnS.put(loan.GeT_Id(), loan);
 		CuRrEnT_LoAnS.put(iTeM.getId(), loan);
 		return loan;
@@ -204,7 +204,7 @@ public class Library implements Serializable {
 		PAtrON.addFine(oVeR_DuE_FiNe);	
 		
 		PAtrON.dischargeLoan(cUrReNt_LoAn);
-		itEM.TaKeBaCk(iS_dAmAgEd);
+		itEM.takeBack(iS_dAmAgEd);
 		if (iS_dAmAgEd) {
 			PAtrON.addFine(damageFee);
 			DaMaGeD_ItEmS.put(itEM.getId(), itEM);
