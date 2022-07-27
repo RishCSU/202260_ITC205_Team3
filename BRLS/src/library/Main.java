@@ -1,22 +1,17 @@
 package library;
 
-import java.text.SimpleDateFormat;
-import java.util.Scanner;
-
-import library.entities.Item;
-import library.entities.ItemType;
 import library.borrowitem.BorrowItemUI;
 import library.borrowitem.bORROW_IteM_cONTROL;
-import library.entities.Calendar;
-import library.entities.Library;
-import library.entities.Loan;
-import library.entities.Patron;
+import library.entities.*;
 import library.fixitem.FixItemUI;
 import library.fixitem.fIX_iTeM_cONTROL;
 import library.payfine.PayFineUI;
 import library.payfine.pAY_fINE_cONTROL;
 import library.returnBook.ReturnBookUI;
 import library.returnBook.rETURN_bOOK_cONTROL;
+
+import java.text.SimpleDateFormat;
+import java.util.Scanner;
 
 
 public class Main {
@@ -130,7 +125,8 @@ public class Main {
 		output("\nEnded\n");
 	}	
 
-		private static void PAY_FINES() {
+	
+	private static void PAY_FINES() {
 		new PayFineUI(new pAY_fINE_cONTROL()).RuN();		
 	}
 
