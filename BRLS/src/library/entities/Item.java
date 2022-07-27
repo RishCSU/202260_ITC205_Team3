@@ -7,11 +7,11 @@ public class Item implements Serializable {
 	
 	private ItemType type;
 	//TyPe
-	private String aUtHoR;
+	private String author;
 	// aUtHoR
-	private String TiTlE;
-	private String CaLlNo;
-	private long Id;
+	private String title;
+	private String callNo;
+	private long id;
 	
 
 	private enum iTeM_StAtE { AVAILABLE, ON_LOAN, DAMAGED, RESERVED };
@@ -21,20 +21,20 @@ public class Item implements Serializable {
 
 	public Item(String AuThOr, String tItLe, String cAlLnO, ItemType ItEmTyPe, long iD) {
 		this.type = ItEmTyPe;
-		this.aUtHoR = AuThOr;
-		this.TiTlE = tItLe;
-		this.CaLlNo = cAlLnO;
-		this.Id = iD;
+		this.author = AuThOr;
+		this.title = tItLe;
+		this.callNo = cAlLnO;
+		this.id = iD;
 		this.sTaTe = iTeM_StAtE.AVAILABLE;
 	}
 	
 	public String toString() {
 		StringBuilder Sb = new StringBuilder();
-		Sb.append("Item: ").append(Id).append("\n")
+		Sb.append("Item: ").append(id).append("\n")
 		  .append("  Type:   ").append(type).append("\n")
-		  .append("  Title:  ").append(TiTlE).append("\n")
-		  .append("  Author: ").append(aUtHoR).append("\n")
-		  .append("  CallNo: ").append(CaLlNo).append("\n")
+		  .append("  Title:  ").append(title).append("\n")
+		  .append("  Author: ").append(author).append("\n")
+		  .append("  CallNo: ").append(callNo).append("\n")
 		  .append("  State:  ").append(sTaTe);
 		
 		return Sb.toString();
@@ -42,11 +42,11 @@ public class Item implements Serializable {
 
 
 	public Long getId() {
-		return Id;
+		return id;
 	}
 
 	public String GeTtItLe() {
-		return TiTlE;
+		return title;
 	}
 
 	public ItemType getType() {
