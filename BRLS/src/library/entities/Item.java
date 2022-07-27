@@ -46,7 +46,7 @@ public class Item implements Serializable {
 	}
 
 
-	public String GeTtItLe() {
+	public String getTitle() {
 		return title;
 	}
 
