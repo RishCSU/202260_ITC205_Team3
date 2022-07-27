@@ -5,7 +5,7 @@ import java.util.Date;
 
 @SuppressWarnings("serial")
 public class Loan implements Serializable {
-	
+
 	private enum LoanState { CURRENT, OVER_DUE, DISCHARGED };
 	
 	private long loanId;
@@ -37,6 +37,7 @@ public class Loan implements Serializable {
 	}
 
 	
+
 	public Long getId() {
 		return loanId;
 	}
@@ -45,8 +46,8 @@ public class Loan implements Serializable {
 	public Date getDueDate() {
 		return dueDate;
 	}
-	
-	
+
+
 	public String toString() {
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
