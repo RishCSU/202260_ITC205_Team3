@@ -4,16 +4,13 @@ import java.io.Serializable;
 
 @SuppressWarnings("serial")
 public class Item implements Serializable {
-	
 	private ItemType type;
 	private String author;
 	private String title;
 	private String callNo;
 	private long id;
-
-	private enum ItemState { AVAILABLE, ON_LOAN, DAMAGED, RESERVED };
+	private enum ItemState {AVAILABLE, ON_LOAN, DAMAGED, RESERVED};
 	private ItemState state;
-
 	public Item(String author, String title, String callNumber, ItemType itemType, long id) {
 		this.type = itemType;
 		this.author = author;
@@ -22,7 +19,6 @@ public class Item implements Serializable {
 		this.id = id;
 		this.state = ItemState.AVAILABLE;
 	}
-	
 	public String toString() {
 		StringBuilder Sb = new StringBuilder();
 		Sb.append("Item: ").append(id).append("\n")
@@ -34,11 +30,9 @@ public class Item implements Serializable {
 		
 		return Sb.toString();
 	}
-
 	public Long getId() {
 		return id;
 	}
-
 	public String getTitle() {
 		return title;
 	}
@@ -74,18 +68,15 @@ public class Item implements Serializable {
 			} else {
 				state = ItemState.AVAILABLE;
 			}
-		} else
+		} else {
 			throw new RuntimeException(String.format("Item: cannot return item while item is in state: %s", state));
-				
+		}
 	}
-
 	public void repair() {
-
 		if (state.equals(ItemState.DAMAGED)) {
 			state = ItemState.AVAILABLE;
 		} else {
 			throw new RuntimeException(String.format("Item: cannot repair while Item is in state: %s", state));
 		}
-		
 	}
 }
