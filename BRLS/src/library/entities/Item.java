@@ -7,7 +7,7 @@ public class Item implements Serializable {
 	private ItemType type;
 	private String author;
 	private String title;
-	private String callNo;
+	private String callNumber;
 	private long id;
 	private enum ItemState {AVAILABLE, ON_LOAN, DAMAGED, RESERVED};
 	private ItemState state;
@@ -15,7 +15,7 @@ public class Item implements Serializable {
 		this.type = itemType;
 		this.author = author;
 		this.title = title;
-		this.callNo = callNumber;
+		this.callNumber = callNumber;
 		this.id = id;
 		this.state = ItemState.AVAILABLE;
 	}
@@ -25,7 +25,7 @@ public class Item implements Serializable {
 		  .append("  Type:   ").append(type).append("\n")
 		  .append("  Title:  ").append(title).append("\n")
 		  .append("  Author: ").append(author).append("\n")
-		  .append("  CallNo: ").append(callNo).append("\n")
+		  .append("  CallNo: ").append(callNumber).append("\n")
 		  .append("  State:  ").append(state);
 		
 		return Sb.toString();
@@ -36,15 +36,12 @@ public class Item implements Serializable {
 	public String getTitle() {
 		return title;
 	}
-
-	public ItemType getType() {
+	public ItemType getItemType() {
 		return type;
 	}
-
 	public boolean isAvailable() {
 		return state == ItemState.AVAILABLE;
 	}
-
 	public boolean isOnLoan() {
 		return state == ItemState.ON_LOAN;
 	}
