@@ -23,20 +23,17 @@ public class Loan implements Serializable {
 		this.state = LoanState.CURRENT;
 	}
 
-	
 	public void updateStatus() {
 		if (state == LoanState.CURRENT &&
-			Calendar.getInstance().getDate().after(dueDate))
+			Calendar.getInstance().getDate().after(dueDate)) {
 			this.state = LoanState.OVER_DUE;
+		}
 		
 	}
 
-	
 	public boolean isOverDue() {
 		return state == LoanState.OVER_DUE;
 	}
-
-	
 
 	public Long getId() {
 		return loanId;
@@ -46,7 +43,6 @@ public class Loan implements Serializable {
 	public Date getDueDate() {
 		return dueDate;
 	}
-
 
 	public String toString() {
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
