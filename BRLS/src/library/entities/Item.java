@@ -41,7 +41,7 @@ public class Item implements Serializable {
 	}
 
 
-	public Long GeTiD() {
+	public Long getId() {
 		return Id;
 	}
 
@@ -64,7 +64,7 @@ public class Item implements Serializable {
 	}
 
 	
-	public boolean Is_DaMaGeD() {
+	public boolean isDamaged() {
 		return sTaTe == iTeM_StAtE.DAMAGED;
 	}
 
@@ -98,7 +98,7 @@ public class Item implements Serializable {
 
 	
 
-	public void rEpAiR() {
+	public void repair() {
 
 		if (sTaTe.equals(iTeM_StAtE.DAMAGED)) 
 			sTaTe = iTeM_StAtE.AVAILABLE;
