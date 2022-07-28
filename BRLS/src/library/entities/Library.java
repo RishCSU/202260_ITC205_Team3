@@ -61,8 +61,9 @@ public class Library implements Serializable {
 				catch (Exception e) {
 					throw new RuntimeException(e);
 				}
+			} else {
+				self = new Library();
 			}
-			else self = new Library();
 		}
 		return self;
 	}
@@ -128,15 +129,17 @@ public class Library implements Serializable {
 
 	
 	public Patron getPatron(long patronId) {
-		if (patrons.containsKey(patronId)) 
+		if (patrons.containsKey(patronId)) {
 			return patrons.get(patronId);
+		}
 		return null;
 	}
 
 	
 	public Item getItem(long itemId) {
-		if (catalog.containsKey(itemId)) 
-			return catalog.get(itemId);		
+		if (catalog.containsKey(itemId)) {
+			return catalog.get(itemId);	
+		}	
 		return null;
 	}
 
@@ -147,16 +150,19 @@ public class Library implements Serializable {
 
 	
 	public boolean canPatronBorrow(Patron patron) {		
-		if (patron.getNumberOfCurrentLoans() == LOAN_LIMIT ) 
+		if (patron.getNumberOfCurrentLoans() == LOAN_LIMIT ) { 
 			return false;
-				
-		if (patron.getFinesOwed() >= MAX_FINES_ALLOWED) 
-			return false;
-				
-		for (Loan loan : patron.getLoans()) 
-			if (loan.isOverDue())
-				return false;
+		}
 			
+		if (patron.getFinesOwed() >= MAX_FINES_ALLOWED) {
+			return false;
+		}
+				
+		for (Loan loan : patron.getLoans()) {
+			if (loan.isOverDue()) {
+				return false;
+			}
+		}
 		return true;
 	}
 
@@ -178,9 +184,9 @@ public class Library implements Serializable {
 	
 	
 	public Loan getLoanByItemId(long itemId) {
-		if (currentLoans.containsKey(itemId)) 
+		if (currentLoans.containsKey(itemId)) { 
 			return currentLoans.get(itemId);
-		
+		}
 		return null;
 	}
 
@@ -214,9 +220,9 @@ public class Library implements Serializable {
 
 
 	public void updateCurrentLoansStatus() {
-		for (Loan loan : currentLoans.values()) 
+		for (Loan loan : currentLoans.values()) {
 			loan.updateStatus();
-				
+		}		
 	}
 
 
@@ -224,10 +230,8 @@ public class Library implements Serializable {
 		if (damagedItems.containsKey(currentItem.getId())) {
 			currentItem.repair();
 			damagedItems.remove(currentItem.getId());
-		}
-		else 
+		} else {
 			throw new RuntimeException("Library: repairItem: item is not damaged");
-		
-		
+		}
 	}
 }
