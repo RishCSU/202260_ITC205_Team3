@@ -53,12 +53,14 @@ public class Library implements Serializable {
         if (self == null) {
             Path PATH = Paths.get(LIBRARY_FILE);
             if (Files.exists(PATH)) {
-                try (ObjectInputStream libraryFile = new ObjectInputStream(new FileInputStream(LIBRARY_FILE));) {
+                try (
+                    FileInputStream libraryStream = new FileInputStream(LIBRARY_FILE);
+                    ObjectInputStream libraryFile = new ObjectInputStream(libraryStream);
+                ) {
                     self = (Library) libraryFile.readObject();
                     Calendar.getInstance().setDate(self.currentDate);
                     libraryFile.close();
-                }
-                catch (Exception e) {
+                } catch (Exception e) {
                     throw new RuntimeException(e);
                 }
             } else {
@@ -72,12 +74,14 @@ public class Library implements Serializable {
     public static synchronized void save() {
         if (self != null) {
             self.currentDate = Calendar.getInstance().getDate();
-            try (ObjectOutputStream libraryFile = new ObjectOutputStream(new FileOutputStream(LIBRARY_FILE));) {
+            try (
+                FileOutputStream libraryStream = new FileOutputStream(LIBRARY_FILE);
+                ObjectOutputStream libraryFile = new ObjectOutputStream(libraryStream);
+            ) {
                 libraryFile.writeObject(self);
                 libraryFile.flush();
                 libraryFile.close();
-            }
-            catch (Exception e) {
+            } catch (Exception e) {
                 throw new RuntimeException(e);
             }
         }
@@ -115,15 +119,17 @@ public class Library implements Serializable {
 
 
     public Patron addPatron(String firstName, String lastName, String emailAddress, long phoneNumber) {
-        Patron newPatron = new Patron(firstName, lastName, emailAddress, phoneNumber, getNextPatronId());
-        patrons.put(newPatron.getId(), newPatron);
+        long newPatronId = getNextPatronId();
+        Patron newPatron = new Patron(firstName, lastName, emailAddress, phoneNumber, newPatronId);
+        patrons.put(newPatronId, newPatron);
         return newPatron;
     }
 
     
     public Item addItem(String author, String title, String callNumber, ItemType itemType) {
-        Item newItem = new Item(author, title, callNumber, itemType, getNextItemId());
-        catalog.put(newItem.getId(), newItem);
+        long newItemId = getNextItemId();
+        Item newItem = new Item(author, title, callNumber, itemType, newItemId);
+        catalog.put(newItemId, newItem);
         return newItem;
     }
 
@@ -150,7 +156,7 @@ public class Library implements Serializable {
 
     
     public boolean canPatronBorrow(Patron patron) {
-        if (patron.getNumberOfCurrentLoans() == LOAN_LIMIT ) { 
+        if (patron.getNumberOfCurrentLoans() == LOAN_LIMIT) { 
             return false;
         }
             
@@ -170,16 +176,18 @@ public class Library implements Serializable {
     public int getNumberOfLoansRemainingForPatron(Patron patron) {
         return LOAN_LIMIT - patron.getNumberOfCurrentLoans();
     }
+    
 
     // As per the Class Diagram, the variable name of the first parameter is book.
     public Loan issueLoan(Item book, Patron patron) {
+        long newLoanId = getNextLoanId();
         Date dueDate = Calendar.getInstance().getDueDate(LOAN_PERIOD);
-        Loan loan = new Loan(getNextLoanId(), book, patron, dueDate);
-        patron.takeOutLoan(loan);
+        Loan newLoan = new Loan(newLoanId, book, patron, dueDate);
+        patron.takeOutLoan(newLoan);
         book.takeOut();
-        loans.put(loan.getId(), loan);
-        currentLoans.put(book.getId(), loan);
-        return loan;
+        loans.put(newLoan.getId(), newLoan);
+        currentLoans.put(book.getId(), newLoan);
+        return newLoan;
     }
     
     
@@ -193,7 +201,8 @@ public class Library implements Serializable {
     
     public double calculateOverDueFine(Loan loan) {
         if (loan.isOverDue()) {
-            long daysOverDue = Calendar.getInstance().getDaysDifference(loan.getDueDate());
+            Date loanDueDate = loan.getDueDate();
+            long daysOverDue = Calendar.getInstance().getDaysDifference(loanDueDate);
             double fine = daysOverDue * FINE_PER_DAY;
             return fine;
         }
@@ -202,20 +211,21 @@ public class Library implements Serializable {
 
 
     public void dischargeLoan(Loan currentLoan, boolean isDamaged) {
-        Patron patron = currentLoan.getPatron();
-        Item item  = currentLoan.getItem();
+        Patron currentPatron = currentLoan.getPatron();
+        Item currentItem  = currentLoan.getItem();
+        long currentItemId = currentItem.getId();
         
         double overDueFine = calculateOverDueFine(currentLoan);
-        patron.addFine(overDueFine);
+        currentPatron.addFine(overDueFine);
         
-        patron.dischargeLoan(currentLoan);
-        item.takeBack(isDamaged);
+        currentPatron.dischargeLoan(currentLoan);
+        currentItem.takeBack(isDamaged);
         if (isDamaged) {
-            patron.addFine(DAMAGE_FEE);
-            damagedItems.put(item.getId(), item);
+            currentPatron.addFine(DAMAGE_FEE);
+            damagedItems.put(currentItemId, currentItem);
         }
         currentLoan.discharge();
-        currentLoans.remove(item.getId());
+        currentLoans.remove(currentItemId);
     }
 
 
@@ -227,9 +237,10 @@ public class Library implements Serializable {
 
 
     public void repairItem(Item currentItem) {
-        if (damagedItems.containsKey(currentItem.getId())) {
+        long currentItemId = currentItem.getId();
+        if (damagedItems.containsKey(currentItemId)) {
             currentItem.repair();
-            damagedItems.remove(currentItem.getId());
+            damagedItems.remove(currentItemId);
         } else {
             throw new RuntimeException("Library: repairItem: item is not damaged");
         }
