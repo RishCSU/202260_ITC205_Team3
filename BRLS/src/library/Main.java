@@ -234,7 +234,7 @@ public class Main {
 		String AuThOr = input("Enter author: ");
 		String TiTlE  = input("Enter title: ");
 		String CaLl_NuMbEr = input("Enter call number: ");
-		Item BoOk = LIBRARY.aDd_ItEm(AuThOr, TiTlE, CaLl_NuMbEr, itemType);
+		Item BoOk = LIBRARY.addItem(AuThOr, TiTlE, CaLl_NuMbEr, itemType);
 		output("\n" + BoOk + "\n");
 		
 	}
