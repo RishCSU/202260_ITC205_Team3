@@ -18,40 +18,64 @@ public class Loan implements Serializable {
         this.dueDate = dueDate;
         this.state = LoanState.CURRENT;
     }
+
+
     public void updateStatus() {
         if (state == LoanState.CURRENT &&
             Calendar.getInstance().getDate().after(dueDate)) {
             this.state = LoanState.OVER_DUE;
         }
     }
+
+
     public boolean isOverDue() {
         return state == LoanState.OVER_DUE;
     }
+
+
     public Long getId() {
         return loanId;
     }
+
+
     public Date getDueDate() {
         return dueDate;
     }
+
+
     public String toString() {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        String strDateFormat = sdf.format(dueDate);
+        long itemId = item.getId();
+        long patronId = patron.getId();
+        ItemType itemType = item.getItemType();
+        String itemTitle = item.getTitle();
+        String patronFirstName = patron.getFirstName();
+        String patronLastName = patron.getLastName();
+
         StringBuilder sb = new StringBuilder();
         sb.append("Loan:  ").append(loanId).append("\n")
-          .append("  Borrower ").append(patron.getId()).append(" : ")
-          .append(patron.getFirstName()).append(" ").append(patron.getLastName()).append("\n")
-          .append("  Item ").append(item.getId()).append(" : " )
-          .append(item.getItemType()).append("\n")
-          .append(item.getTitle()).append("\n")
-          .append("  DueDate: ").append(sdf.format(dueDate)).append("\n")
+          .append("  Borrower ").append(patronId).append(" : ")
+          .append(patronFirstName).append(" ").append(patronLastName).append("\n")
+          .append("  Item ").append(itemId).append(" : " )
+          .append(itemType).append("\n")
+          .append(itemTitle).append("\n")
+          .append("  DueDate: ").append(strDateFormat).append("\n")
           .append("  State: ").append(state);
         return sb.toString();
     }
+
+
     public Patron getPatron() {
         return patron;
     }
+
+
     public Item getItem() {
         return item;
     }
+
+
     public void discharge() {
         state = LoanState.DISCHARGED;
     }
