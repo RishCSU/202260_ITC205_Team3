@@ -59,9 +59,9 @@ public class Main {
 				output(item);
 			}
 						
-			boolean fInIsHeD = false;
+			boolean finished = false;
 			
-			while (!fInIsHeD) {
+			while (!finished) {
 				
 				output("\n" + simpleDateFormat.format(calendar.getDate()));
 				String ChOiCe = input(menu);
@@ -109,7 +109,7 @@ public class Main {
 					break;
 					
 				case "Q": 
-					fInIsHeD = true;
+					finished = true;
 					break;
 					
 				default: 
