@@ -16,7 +16,7 @@ public class PayFineUI {
         this.control = payFineControl;
         scanner = new Scanner(System.in);
         uiState = PayFineUIState.INITIALISED;
-        payFineControl.SeT_uI(this);
+        payFineControl.setUI(this);
     }
 	
 	
@@ -31,12 +31,12 @@ public class PayFineUI {
             case READY:
                 String patronString = getInput("Swipe patron card (press <enter> to cancel): ");
                 if (patronString.length() == 0) {
-                    control.CaNcEl();
+                    control.cancel();
                     break;
                 }
                 try {
                     long patronId = Long.valueOf(patronString).longValue();
-                    control.CaRd_sWiPeD(patronId);
+                    control.cardSwiped(patronId);
                 } catch (NumberFormatException e) {
                     displayOutput("Invalid patronID");
                 }
@@ -46,7 +46,7 @@ public class PayFineUI {
                 double amount = 0;
                 String amountString = getInput("Enter amount (<Enter> cancels) : ");
                 if (amountString.length() == 0) {
-                    control.CaNcEl();
+                    control.cancel();
                     break;
                 }
                 try {
@@ -56,7 +56,7 @@ public class PayFineUI {
                     displayOutput("Amount must be positive");
                     break;
                 }
-                control.PaY_FiNe(amount);
+                control.payFine(amount);
                 break;
 								
             case CANCELLED:

@@ -18,21 +18,21 @@ public class PayFineControl {
 	}
 	
 	
-	public void SeT_uI(PayFineUI uI) {
+	public void setUI(PayFineUI ui) {
 		if (!state.equals(ControlState.INITIALISED)) {
 			throw new RuntimeException("PayFineControl: cannot call setUI except in INITIALISED state");
 		}	
-		this.ui = uI;
+		this.ui = ui;
 		ui.setReady();
 		state = ControlState.READY;		
 	}
 
 
-	public void CaRd_sWiPeD(long PatROn_Id) {
+	public void cardSwiped(long patronId) {
 		if (!state.equals(ControlState.READY)) 
 			throw new RuntimeException("PayFineControl: cannot call cardSwiped except in READY state");
 			
-		patron = library.getPatron(PatROn_Id);
+		patron = library.getPatron(patronId);
 		
 		if (patron == null) {
 			ui.display(library);
@@ -44,21 +44,21 @@ public class PayFineControl {
 	}
 	
 	
-	public double PaY_FiNe(double AmOuNt) {
+	public double payFine(double paymentAmount) {
 		if (!state.equals(ControlState.PAYING)) 
 			throw new RuntimeException("PayFineControl: cannot call payFine except in PAYING state");
 			
-		double ChAnGe = patron.payFine(AmOuNt);
-		if (ChAnGe > 0) 
+		double change = patron.payFine(paymentAmount);
+		if (change > 0) 
 			ui.display(library);
 		
 		ui.display(patron);
 		ui.setCompleted();
 		state = ControlState.COMPLETED;
-		return ChAnGe;
+		return change;
 	}
 	
-	public void CaNcEl() {
+	public void cancel() {
 		ui.setCancelled();
 		state = ControlState.CANCELLED;
 	}
