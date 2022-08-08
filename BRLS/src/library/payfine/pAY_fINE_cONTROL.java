@@ -35,10 +35,10 @@ public class pAY_fINE_cONTROL {
 		paTRon = LiBrArY.getPatron(PatROn_Id);
 		
 		if (paTRon == null) {
-			Ui.DiSplAY("Invalid Patron Id");
+			Ui.display(LiBrArY);
 			return;
 		}
-		Ui.DiSplAY(paTRon);
+		Ui.display(paTRon);
 		Ui.SeTpAyInG();
 		StAtE = cOnTrOl_sTaTe.PAYING;
 	}
@@ -50,10 +50,10 @@ public class pAY_fINE_cONTROL {
 			
 		double ChAnGe = paTRon.payFine(AmOuNt);
 		if (ChAnGe > 0) 
-			Ui.DiSplAY(String.format("Change: $%.2f", ChAnGe));
+			Ui.display(LiBrArY);
 		
-		Ui.DiSplAY(paTRon);
-		Ui.SeTcOmPlEtEd();
+		Ui.display(paTRon);
+		Ui.setCompleted();
 		StAtE = cOnTrOl_sTaTe.COMPLETED;
 		return ChAnGe;
 	}

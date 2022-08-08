@@ -94,7 +94,7 @@ public class PayFineUI {
 	}
 
 
-	public void SeTcOmPlEtEd() {
+	public void setCompleted() {
 		uiState = PayFineUIState.COMPLETED;
 		
 	}
