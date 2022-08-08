@@ -9,13 +9,13 @@ public class PayFineUI {
 
 	private pAY_fINE_cONTROL CoNtRoL;
 	private Scanner ScAnNeR;
-	private PayFineUIState StAtE;
+	private PayFineUIState uiState;
 
 	
 	public PayFineUI(pAY_fINE_cONTROL control) {
 		this.CoNtRoL = control;
 		ScAnNeR = new Scanner(System.in);
-		StAtE = PayFineUIState.INITIALISED;
+		uiState = PayFineUIState.INITIALISED;
 		control.SeT_uI(this);
 	}
 	
@@ -26,7 +26,7 @@ public class PayFineUI {
 		
 		while (true) {
 			
-			switch (StAtE) {
+			switch (uiState) {
 			
 			case READY:
 				String PaT_Str = GeTiNpUt("Swipe patron card (press <enter> to cancel): ");
@@ -71,7 +71,7 @@ public class PayFineUI {
 			
 			default:
 				DiSpLaYoUtPuT("Unhandled state");
-				throw new RuntimeException("FixBookUI : unhandled state :" + StAtE);			
+				throw new RuntimeException("FixBookUI : unhandled state :" + uiState);			
 			
 			}		
 		}		
@@ -95,25 +95,25 @@ public class PayFineUI {
 
 
 	public void SeTcOmPlEtEd() {
-		StAtE = PayFineUIState.COMPLETED;
+		uiState = PayFineUIState.COMPLETED;
 		
 	}
 
 
 	public void SeTpAyInG() {
-		StAtE = PayFineUIState.PAYING;
+		uiState = PayFineUIState.PAYING;
 		
 	}
 
 
 	public void SeTcAnCeLlEd() {
-		StAtE = PayFineUIState.CANCELLED;
+		uiState = PayFineUIState.CANCELLED;
 		
 	}
 
 
 	public void SeTrEaDy() {
-		StAtE = PayFineUIState.READY;
+		uiState = PayFineUIState.READY;
 		
 	}
 
