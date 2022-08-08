@@ -15,7 +15,7 @@ public class FixItemUI {
 		this.CoNtRoL = CoNtRoL;
 		InPuT = new Scanner(System.in);
 		StAtE = uI_sTaTe.INITIALISED;
-		CoNtRoL.SeT_Ui(this);
+		CoNtRoL.setUI(this);
 	}
 
 
@@ -29,12 +29,12 @@ public class FixItemUI {
 			case READY:
 				String ITem_EnTrY_StRiNg = GeTiNpUt("Scan Item (<enter> completes): ");
 				if (ITem_EnTrY_StRiNg.length() == 0) 
-					CoNtRoL.PrOcEsSiNgCoMpLeTeD();
+					CoNtRoL.processingCompleted();
 				
 				else {
 					try {
 						long itEM_Id = Long.valueOf(ITem_EnTrY_StRiNg).longValue();
-						CoNtRoL.ItEm_ScAnNeD(itEM_Id);
+						CoNtRoL.itemScanned(itEM_Id);
 					}
 					catch (NumberFormatException e) {
 						DiSpLaY_OuTpUt("Invalid itemId");
@@ -48,7 +48,7 @@ public class FixItemUI {
 				if (AnS.toUpperCase().equals("Y")) 
 					MuStFiX = true;
 				
-				CoNtRoL.IteMInSpEcTeD(MuStFiX);
+				CoNtRoL.itemInspected(MuStFiX);
 				break;
 								
 			case COMPLETED:
