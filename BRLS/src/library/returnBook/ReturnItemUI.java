@@ -7,13 +7,13 @@ public class ReturnItemUI {
 	private enum ReturnItemUIState { INITIALISED, READY, INSPECTING, COMPLETED };
 
 	private ReturnItemControl control;
-	private Scanner iNpUt;
+	private Scanner scanner;
 	private ReturnItemUIState StATe;
 
 	
 	public ReturnItemUI(ReturnItemControl cOnTrOL) {
 		this.control = cOnTrOL;
-		iNpUt = new Scanner(System.in);
+		scanner = new Scanner(System.in);
 		StATe = ReturnItemUIState.INITIALISED;
 		cOnTrOL.setUI(this);
 	}
@@ -67,7 +67,7 @@ public class ReturnItemUI {
 	
 	private String GeTiNpUt(String PrOmPt) {
 		System.out.print(PrOmPt);
-		return iNpUt.nextLine();
+		return scanner.nextLine();
 	}	
 		
 		
