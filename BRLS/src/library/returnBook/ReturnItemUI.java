@@ -73,8 +73,8 @@ public class ReturnItemUI {
 	}	
 		
 		
-	private void displayOutput(Object ObJeCt) {
-		System.out.println(ObJeCt);
+	private void displayOutput(Object displayObject) {
+		System.out.println(displayObject);
 	}
 	
 			
