@@ -55,8 +55,8 @@ public class Main {
 				output(patron);
 			}
 			output(" ");
-			for (Item iTEm : library.listItems()) {
-				output(iTEm);
+			for (Item item : library.listItems()) {
+				output(item);
 			}
 						
 			boolean fInIsHeD = false;
