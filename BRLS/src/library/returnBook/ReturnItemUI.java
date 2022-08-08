@@ -4,17 +4,17 @@ import java.util.Scanner;
 
 public class ReturnItemUI {
 
-	private enum uI_sTaTe { INITIALISED, READY, INSPECTING, COMPLETED };
+	private enum ReturnItemUIState { INITIALISED, READY, INSPECTING, COMPLETED };
 
 	private ReturnItemControl CoNtRoL;
 	private Scanner iNpUt;
-	private uI_sTaTe StATe;
+	private ReturnItemUIState StATe;
 
 	
 	public ReturnItemUI(ReturnItemControl cOnTrOL) {
 		this.CoNtRoL = cOnTrOL;
 		iNpUt = new Scanner(System.in);
-		StATe = uI_sTaTe.INITIALISED;
+		StATe = ReturnItemUIState.INITIALISED;
 		cOnTrOL.setUI(this);
 	}
 
@@ -81,19 +81,19 @@ public class ReturnItemUI {
 	}
 	
 	public void setReady() {
-		StATe = uI_sTaTe.READY;
+		StATe = ReturnItemUIState.READY;
 		
 	}
 
 
 	public void setInspecting() {
-		StATe = uI_sTaTe.INSPECTING;
+		StATe = ReturnItemUIState.INSPECTING;
 		
 	}
 
 
 	public void setCompleted() {
-		StATe = uI_sTaTe.COMPLETED;
+		StATe = ReturnItemUIState.COMPLETED;
 		
 	}
 
