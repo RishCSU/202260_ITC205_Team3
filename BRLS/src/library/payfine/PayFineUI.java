@@ -37,8 +37,7 @@ public class PayFineUI {
 				try {
 					long patronId = Long.valueOf(patronString).longValue();
 					control.CaRd_sWiPeD(patronId);
-				}
-				catch (NumberFormatException e) {
+				} catch (NumberFormatException e) {
 					displayOutput("Invalid patronID");
 				}
 				break;
@@ -52,8 +51,7 @@ public class PayFineUI {
 				}
 				try {
 					amount = Double.valueOf(amountString).doubleValue();
-				}
-				catch (NumberFormatException e) {}
+				} catch (NumberFormatException e) {}
 				if (amount <= 0) {
 					displayOutput("Amount must be positive");
 					break;
