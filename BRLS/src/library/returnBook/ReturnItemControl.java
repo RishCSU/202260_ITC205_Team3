@@ -5,7 +5,7 @@ import library.entities.Loan;
 
 public class ReturnItemControl {
 
-	private ReturnItemUI Ui;
+	private ReturnItemUI ui;
 	private enum ControlState { INITIALISED, READY, INSPECTING };
 	private ControlState state;
 	
@@ -23,7 +23,7 @@ public class ReturnItemControl {
 		if (!state.equals(ControlState.INITIALISED))
 			throw new RuntimeException("ReturnBookControl: cannot call setUI except in INITIALISED state");
 		
-		this.Ui = uI;
+		this.ui = uI;
 		uI.SeTrEaDy();
 		state = ControlState.READY;
 	}
@@ -36,11 +36,11 @@ public class ReturnItemControl {
 		Item cUrReNt_bOoK = lIbRaRy.getItem(bOoK_iD);
 		
 		if (cUrReNt_bOoK == null) {
-			Ui.DiSpLaY("Invalid Book Id");
+			ui.DiSpLaY("Invalid Book Id");
 			return;
 		}
 		if (!cUrReNt_bOoK.isOnLoan()) {
-			Ui.DiSpLaY("Book has not been borrowed");
+			ui.DiSpLaY("Book has not been borrowed");
 			return;
 		}		
 		CurrENT_loan = lIbRaRy.getLoanByItemId(bOoK_iD);	
@@ -48,14 +48,14 @@ public class ReturnItemControl {
 		if (CurrENT_loan.isOverDue())
 			Over_Due_Fine = lIbRaRy.calculateOverDueFine(CurrENT_loan);
 		
-		Ui.DiSpLaY("Inspecting");
-		Ui.DiSpLaY(cUrReNt_bOoK.toString());
-		Ui.DiSpLaY(CurrENT_loan.toString());
+		ui.DiSpLaY("Inspecting");
+		ui.DiSpLaY(cUrReNt_bOoK.toString());
+		ui.DiSpLaY(CurrENT_loan.toString());
 		
 		if (CurrENT_loan.isOverDue())
-			Ui.DiSpLaY(String.format("\nOverdue fine : $%.2f", Over_Due_Fine));
+			ui.DiSpLaY(String.format("\nOverdue fine : $%.2f", Over_Due_Fine));
 		
-		Ui.SeTiNsPeCtInG();
+		ui.SeTiNsPeCtInG();
 		state = ControlState.INSPECTING;
 	}
 
@@ -64,7 +64,7 @@ public class ReturnItemControl {
 		if (!state.equals(ControlState.READY))
 			throw new RuntimeException("ReturnBookControl: cannot call scanningComplete except in READY state");
 		
-		Ui.SeTCoMpLeTeD();
+		ui.SeTCoMpLeTeD();
 	}
 
 
@@ -74,7 +74,7 @@ public class ReturnItemControl {
 		
 		lIbRaRy.dischargeLoan(CurrENT_loan, iS_dAmAgEd);
 		CurrENT_loan = null;
-		Ui.SeTrEaDy();
+		ui.SeTrEaDy();
 		state = ControlState.READY;
 	}
 
