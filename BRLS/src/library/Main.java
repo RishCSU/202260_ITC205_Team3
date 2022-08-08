@@ -7,7 +7,7 @@ import library.fixitem.FixItemUI;
 import library.fixitem.fIX_iTeM_cONTROL;
 import library.payfine.PayFineUI;
 import library.payfine.pAY_fINE_cONTROL;
-import library.returnBook.ReturnBookUI;
+import library.returnBook.ReturnItemUI;
 import library.returnBook.ReturnItemControl;
 
 import java.text.SimpleDateFormat;
@@ -164,7 +164,7 @@ public class Main {
 
 
 	private static void RETURN_ITEM() {
-		new ReturnBookUI(new ReturnItemControl()).RuN();
+		new ReturnItemUI(new ReturnItemControl()).RuN();
 	}
 
 
