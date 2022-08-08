@@ -28,7 +28,7 @@ public class ReturnItemControl {
 		state = ControlState.READY;
 	}
 
-	public void bOoK_sCaNnEd(long bookId) {
+	public void itemScanned(long bookId) {
 		if (!state.equals(ControlState.READY))
 			throw new RuntimeException("ReturnBookControl: cannot call bookScanned except in READY state");
 		
