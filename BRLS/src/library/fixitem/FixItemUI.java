@@ -28,15 +28,13 @@ public class FixItemUI {
 			
 			case READY:
 				String itemEntryString = getInput("Scan Item (<enter> completes): ");
-				if (itemEntryString.length() == 0) 
+				if (itemEntryString.length() == 0) {
 					control.processingCompleted();
-				
-				else {
+				} else {
 					try {
 						long itemId = Long.valueOf(itemEntryString).longValue();
 						control.itemScanned(itemId);
-					}
-					catch (NumberFormatException e) {
+					} catch (NumberFormatException e) {
 						displayOutput("Invalid itemId");
 					}
 				}
@@ -45,9 +43,9 @@ public class FixItemUI {
 			case INSPECTING:
 				String answer = getInput("Fix Item? (Y/N) : ");
 				boolean MuStFiX = false;
-				if (answer.toUpperCase().equals("Y")) 
+				if (answer.toUpperCase().equals("Y")) {
 					MuStFiX = true;
-				
+				}
 				control.itemInspected(MuStFiX);
 				break;
 								
