@@ -64,9 +64,9 @@ public class Main {
 			while (!finished) {
 				
 				output("\n" + simpleDateFormat.format(calendar.getDate()));
-				String ChOiCe = input(menu);
+				String choice = input(menu);
 				
-				switch (ChOiCe.toUpperCase()) {
+				switch (choice.toUpperCase()) {
 				
 				case "AP": 
 					ADD_PATRON();
