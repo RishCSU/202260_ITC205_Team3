@@ -78,8 +78,8 @@ public class ReturnItemUI {
 	}
 	
 			
-	public void display(Object object) {
-		displayOutput(object);
+	public void display(Object displayObject) {
+		displayOutput(displayObject);
 	}
 	
 	public void setReady() {
