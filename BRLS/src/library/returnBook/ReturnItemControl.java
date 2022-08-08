@@ -6,8 +6,8 @@ import library.entities.Loan;
 public class ReturnItemControl {
 
 	private ReturnBookUI Ui;
-	private enum cOnTrOl_sTaTe { INITIALISED, READY, INSPECTING };
-	private cOnTrOl_sTaTe sTaTe;
+	private enum ControlState { INITIALISED, READY, INSPECTING };
+	private ControlState sTaTe;
 	
 	private Library lIbRaRy;
 	private Loan CurrENT_loan;
@@ -15,22 +15,22 @@ public class ReturnItemControl {
 
 	public ReturnItemControl() {
 		this.lIbRaRy = Library.getInstance();
-		sTaTe = cOnTrOl_sTaTe.INITIALISED;
+		sTaTe = ControlState.INITIALISED;
 	}
 	
 	
 	public void sEt_uI(ReturnBookUI uI) {
-		if (!sTaTe.equals(cOnTrOl_sTaTe.INITIALISED)) 
+		if (!sTaTe.equals(ControlState.INITIALISED))
 			throw new RuntimeException("ReturnBookControl: cannot call setUI except in INITIALISED state");
 		
 		this.Ui = uI;
 		uI.SeTrEaDy();
-		sTaTe = cOnTrOl_sTaTe.READY;		
+		sTaTe = ControlState.READY;
 	}
 
 
 	public void bOoK_sCaNnEd(long bOoK_iD) {
-		if (!sTaTe.equals(cOnTrOl_sTaTe.READY)) 
+		if (!sTaTe.equals(ControlState.READY))
 			throw new RuntimeException("ReturnBookControl: cannot call bookScanned except in READY state");
 		
 		Item cUrReNt_bOoK = lIbRaRy.getItem(bOoK_iD);
@@ -56,12 +56,12 @@ public class ReturnItemControl {
 			Ui.DiSpLaY(String.format("\nOverdue fine : $%.2f", Over_Due_Fine));
 		
 		Ui.SeTiNsPeCtInG();
-		sTaTe = cOnTrOl_sTaTe.INSPECTING;		
+		sTaTe = ControlState.INSPECTING;
 	}
 
 
 	public void sCaNnInG_cOmPlEtEd() {
-		if (!sTaTe.equals(cOnTrOl_sTaTe.READY)) 
+		if (!sTaTe.equals(ControlState.READY))
 			throw new RuntimeException("ReturnBookControl: cannot call scanningComplete except in READY state");
 		
 		Ui.SeTCoMpLeTeD();
@@ -69,13 +69,13 @@ public class ReturnItemControl {
 
 
 	public void dIsChArGe_lOaN(boolean iS_dAmAgEd) {
-		if (!sTaTe.equals(cOnTrOl_sTaTe.INSPECTING)) 
+		if (!sTaTe.equals(ControlState.INSPECTING))
 			throw new RuntimeException("ReturnBookControl: cannot call dischargeLoan except in INSPECTING state");
 		
 		lIbRaRy.dischargeLoan(CurrENT_loan, iS_dAmAgEd);
 		CurrENT_loan = null;
 		Ui.SeTrEaDy();
-		sTaTe = cOnTrOl_sTaTe.READY;				
+		sTaTe = ControlState.READY;
 	}
 
 
