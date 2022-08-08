@@ -51,7 +51,7 @@ public class ReturnItemUI {
 				if (AnS.toUpperCase().equals("Y")) 					
 					Is_DAmAgEd = true;
 				
-				CoNtRoL.dIsChArGe_lOaN(Is_DAmAgEd);
+				CoNtRoL.dischargeLoan(Is_DAmAgEd);
 			
 			case COMPLETED:
 				DiSpLaYoUtPuT("Return processing complete");
