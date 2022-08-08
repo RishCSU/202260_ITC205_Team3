@@ -29,7 +29,7 @@ public class PayFineUI {
 			switch (uiState) {
 			
 			case READY:
-				String PaT_Str = GeTiNpUt("Swipe patron card (press <enter> to cancel): ");
+				String PaT_Str = getInput("Swipe patron card (press <enter> to cancel): ");
 				if (PaT_Str.length() == 0) {
 					control.CaNcEl();
 					break;
@@ -45,7 +45,7 @@ public class PayFineUI {
 				
 			case PAYING:
 				double AmouNT = 0;
-				String Amt_Str = GeTiNpUt("Enter amount (<Enter> cancels) : ");
+				String Amt_Str = getInput("Enter amount (<Enter> cancels) : ");
 				if (Amt_Str.length() == 0) {
 					control.CaNcEl();
 					break;
@@ -78,7 +78,7 @@ public class PayFineUI {
 	}
 
 	
-	private String GeTiNpUt(String prompt) {
+	private String getInput(String prompt) {
 		System.out.print(prompt);
 		return scanner.nextLine();
 	}	
