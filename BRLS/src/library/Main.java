@@ -6,7 +6,7 @@ import library.entities.*;
 import library.fixitem.FixItemUI;
 import library.fixitem.fIX_iTeM_cONTROL;
 import library.payfine.PayFineUI;
-import library.payfine.pAY_fINE_cONTROL;
+import library.payfine.PayFineControl;
 import library.returnBook.ReturnBookUI;
 import library.returnBook.rETURN_bOOK_cONTROL;
 
@@ -127,7 +127,7 @@ public class Main {
 
 	
 	private static void PAY_FINES() {
-		new PayFineUI(new pAY_fINE_cONTROL()).run();		
+		new PayFineUI(new PayFineControl()).run();		
 	}
 
 

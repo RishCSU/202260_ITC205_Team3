@@ -2,7 +2,7 @@ package library.payfine;
 import library.entities.Library;
 import library.entities.Patron;
 
-public class pAY_fINE_cONTROL {
+public class PayFineControl {
 	
 	private PayFineUI Ui;
 	private enum cOnTrOl_sTaTe { INITIALISED, READY, PAYING, COMPLETED, CANCELLED };
@@ -12,7 +12,7 @@ public class pAY_fINE_cONTROL {
 	private Patron paTRon;
 
 
-	public pAY_fINE_cONTROL() {
+	public PayFineControl() {
 		this.LiBrArY = Library.getInstance();
 		StAtE = cOnTrOl_sTaTe.INITIALISED;
 	}
