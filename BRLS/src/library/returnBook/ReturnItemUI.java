@@ -20,7 +20,7 @@ public class ReturnItemUI {
 
 
 	public void run() {
-		DiSpLaYoUtPuT("Return Book Use Case UI\n");
+		displayOutput("Return Book Use Case UI\n");
 		
 		while (true) {
 			
@@ -40,7 +40,7 @@ public class ReturnItemUI {
 						control.itemScanned(Book_Id);
 					}
 					catch (NumberFormatException e) {
-						DiSpLaYoUtPuT("Invalid bookId");
+						displayOutput("Invalid bookId");
 					}					
 				}
 				break;				
@@ -54,11 +54,11 @@ public class ReturnItemUI {
 				control.dischargeLoan(Is_DAmAgEd);
 			
 			case COMPLETED:
-				DiSpLaYoUtPuT("Return processing complete");
+				displayOutput("Return processing complete");
 				return;
 			
 			default:
-				DiSpLaYoUtPuT("Unhandled state");
+				displayOutput("Unhandled state");
 				throw new RuntimeException("ReturnBookUI : unhandled state :" + uiState);
 			}
 		}
@@ -71,13 +71,13 @@ public class ReturnItemUI {
 	}	
 		
 		
-	private void DiSpLaYoUtPuT(Object ObJeCt) {
+	private void displayOutput(Object ObJeCt) {
 		System.out.println(ObJeCt);
 	}
 	
 			
 	public void display(Object object) {
-		DiSpLaYoUtPuT(object);
+		displayOutput(object);
 	}
 	
 	public void setReady() {
