@@ -47,9 +47,9 @@ public class ReturnItemUI {
 				break;				
 				
 			case INSPECTING:
-				String AnS = getInput("Is book damaged? (Y/N): ");
+				String userInput = getInput("Is book damaged? (Y/N): ");
 				boolean Is_DAmAgEd = false;
-				if (AnS.toUpperCase().equals("Y")) 					
+				if (userInput.toUpperCase().equals("Y"))
 					Is_DAmAgEd = true;
 				
 				control.dischargeLoan(Is_DAmAgEd);
