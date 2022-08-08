@@ -169,7 +169,7 @@ public class Main {
 
 
 	private static void FIX_ITEMS() {
-		new FixItemUI(new FixItemControl()).RuN();		
+		new FixItemUI(new FixItemControl()).run();		
 	}
 
 
