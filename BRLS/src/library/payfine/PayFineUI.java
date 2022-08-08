@@ -8,13 +8,13 @@ public class PayFineUI {
 	private enum PayFineUIState { INITIALISED, READY, PAYING, COMPLETED, CANCELLED };
 
 	private pAY_fINE_cONTROL control;
-	private Scanner ScAnNeR;
+	private Scanner scanner;
 	private PayFineUIState uiState;
 
 	
 	public PayFineUI(pAY_fINE_cONTROL control) {
 		this.control = control;
-		ScAnNeR = new Scanner(System.in);
+		scanner = new Scanner(System.in);
 		uiState = PayFineUIState.INITIALISED;
 		control.SeT_uI(this);
 	}
@@ -80,7 +80,7 @@ public class PayFineUI {
 	
 	private String GeTiNpUt(String prompt) {
 		System.out.print(prompt);
-		return ScAnNeR.nextLine();
+		return scanner.nextLine();
 	}	
 		
 		
