@@ -9,12 +9,12 @@ public class ReturnItemControl {
 	private enum ControlState { INITIALISED, READY, INSPECTING };
 	private ControlState state;
 	
-	private Library lIbRaRy;
+	private Library library;
 	private Loan CurrENT_loan;
 	
 
 	public ReturnItemControl() {
-		this.lIbRaRy = Library.getInstance();
+		this.library = Library.getInstance();
 		state = ControlState.INITIALISED;
 	}
 	
@@ -33,7 +33,7 @@ public class ReturnItemControl {
 		if (!state.equals(ControlState.READY))
 			throw new RuntimeException("ReturnBookControl: cannot call bookScanned except in READY state");
 		
-		Item cUrReNt_bOoK = lIbRaRy.getItem(bOoK_iD);
+		Item cUrReNt_bOoK = library.getItem(bOoK_iD);
 		
 		if (cUrReNt_bOoK == null) {
 			ui.DiSpLaY("Invalid Book Id");
@@ -43,10 +43,10 @@ public class ReturnItemControl {
 			ui.DiSpLaY("Book has not been borrowed");
 			return;
 		}		
-		CurrENT_loan = lIbRaRy.getLoanByItemId(bOoK_iD);	
+		CurrENT_loan = library.getLoanByItemId(bOoK_iD);
 		double Over_Due_Fine = 0.0;
 		if (CurrENT_loan.isOverDue())
-			Over_Due_Fine = lIbRaRy.calculateOverDueFine(CurrENT_loan);
+			Over_Due_Fine = library.calculateOverDueFine(CurrENT_loan);
 		
 		ui.DiSpLaY("Inspecting");
 		ui.DiSpLaY(cUrReNt_bOoK.toString());
@@ -72,7 +72,7 @@ public class ReturnItemControl {
 		if (!state.equals(ControlState.INSPECTING))
 			throw new RuntimeException("ReturnBookControl: cannot call dischargeLoan except in INSPECTING state");
 		
-		lIbRaRy.dischargeLoan(CurrENT_loan, iS_dAmAgEd);
+		library.dischargeLoan(CurrENT_loan, iS_dAmAgEd);
 		CurrENT_loan = null;
 		ui.SeTrEaDy();
 		state = ControlState.READY;
