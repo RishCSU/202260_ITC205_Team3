@@ -54,7 +54,7 @@ public class ReturnItemControl {
 		if (currentLoan.isOverDue())
 			ui.display(String.format("\nOverdue fine : $%.2f", overDueFine));
 		
-		ui.SeTiNsPeCtInG();
+		ui.setInspecting();
 		state = ControlState.INSPECTING;
 	}
 

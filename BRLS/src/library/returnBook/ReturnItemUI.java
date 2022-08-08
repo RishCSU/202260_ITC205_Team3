@@ -86,7 +86,7 @@ public class ReturnItemUI {
 	}
 
 
-	public void SeTiNsPeCtInG() {
+	public void setInspecting() {
 		StATe = uI_sTaTe.INSPECTING;
 		
 	}
