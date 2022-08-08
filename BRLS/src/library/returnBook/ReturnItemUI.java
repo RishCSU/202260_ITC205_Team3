@@ -80,7 +80,7 @@ public class ReturnItemUI {
 		DiSpLaYoUtPuT(object);
 	}
 	
-	public void SeTrEaDy() {
+	public void setReady() {
 		StATe = uI_sTaTe.READY;
 		
 	}

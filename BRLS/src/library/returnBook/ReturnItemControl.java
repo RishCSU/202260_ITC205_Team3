@@ -24,7 +24,7 @@ public class ReturnItemControl {
 			throw new RuntimeException("ReturnBookControl: cannot call setUI except in INITIALISED state");
 		
 		this.ui = ui;
-		ui.SeTrEaDy();
+		ui.setReady();
 		state = ControlState.READY;
 	}
 
@@ -74,7 +74,7 @@ public class ReturnItemControl {
 		
 		library.dischargeLoan(currentLoan, iS_dAmAgEd);
 		currentLoan = null;
-		ui.SeTrEaDy();
+		ui.setReady();
 		state = ControlState.READY;
 	}
 
