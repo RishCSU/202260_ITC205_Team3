@@ -51,8 +51,8 @@ public class Main {
 			calendar = Calendar.getInstance();
 			simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
 	
-			for (Patron PAtrON : library.listPatrons()) {
-				output(PAtrON);
+			for (Patron patron : library.listPatrons()) {
+				output(patron);
 			}
 			output(" ");
 			for (Item iTEm : library.listItems()) {
