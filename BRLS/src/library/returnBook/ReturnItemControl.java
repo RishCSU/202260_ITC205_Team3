@@ -43,16 +43,16 @@ public class ReturnItemControl {
 			return;
 		}		
 		currentLoan = library.getLoanByItemId(bookId);
-		double Over_Due_Fine = 0.0;
+		double overDueFine = 0.0;
 		if (currentLoan.isOverDue())
-			Over_Due_Fine = library.calculateOverDueFine(currentLoan);
+			overDueFine = library.calculateOverDueFine(currentLoan);
 		
 		ui.display("Inspecting");
 		ui.display(currentBookId.toString());
 		ui.display(currentLoan.toString());
 		
 		if (currentLoan.isOverDue())
-			ui.display(String.format("\nOverdue fine : $%.2f", Over_Due_Fine));
+			ui.display(String.format("\nOverdue fine : $%.2f", overDueFine));
 		
 		ui.SeTiNsPeCtInG();
 		state = ControlState.INSPECTING;
