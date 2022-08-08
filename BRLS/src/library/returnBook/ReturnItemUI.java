@@ -11,11 +11,11 @@ public class ReturnItemUI {
 	private ReturnItemUIState uiState;
 
 	
-	public ReturnItemUI(ReturnItemControl cOnTrOL) {
-		this.control = cOnTrOL;
+	public ReturnItemUI(ReturnItemControl returnItemControl) {
+		this.control = returnItemControl;
 		scanner = new Scanner(System.in);
 		uiState = ReturnItemUIState.INITIALISED;
-		cOnTrOL.setUI(this);
+		returnItemControl.setUI(this);
 	}
 
 
