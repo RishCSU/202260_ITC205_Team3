@@ -23,7 +23,7 @@ public class pAY_fINE_cONTROL {
 			throw new RuntimeException("PayFineControl: cannot call setUI except in INITIALISED state");
 		}	
 		this.Ui = uI;
-		Ui.SeTrEaDy();
+		Ui.setReady();
 		StAtE = cOnTrOl_sTaTe.READY;		
 	}
 
@@ -39,7 +39,7 @@ public class pAY_fINE_cONTROL {
 			return;
 		}
 		Ui.display(paTRon);
-		Ui.SeTpAyInG();
+		Ui.setPaying();
 		StAtE = cOnTrOl_sTaTe.PAYING;
 	}
 	
@@ -59,7 +59,7 @@ public class pAY_fINE_cONTROL {
 	}
 	
 	public void CaNcEl() {
-		Ui.SeTcAnCeLlEd();
+		Ui.setCancelled();
 		StAtE = cOnTrOl_sTaTe.CANCELLED;
 	}
 

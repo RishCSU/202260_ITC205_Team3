@@ -107,7 +107,7 @@ public class PayFineUI {
     }
 
 
-    public void SeTrEaDy() {
+    public void setReady() {
         uiState = PayFineUIState.READY;	
     }
 
