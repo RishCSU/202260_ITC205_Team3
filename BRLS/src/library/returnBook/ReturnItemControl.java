@@ -35,11 +35,11 @@ public class ReturnItemControl {
 		Item currentBookId = library.getItem(bookId);
 		
 		if (currentBookId == null) {
-			ui.DiSpLaY("Invalid Book Id");
+			ui.display("Invalid Book Id");
 			return;
 		}
 		if (!currentBookId.isOnLoan()) {
-			ui.DiSpLaY("Book has not been borrowed");
+			ui.display("Book has not been borrowed");
 			return;
 		}		
 		currentLoan = library.getLoanByItemId(bookId);
@@ -47,12 +47,12 @@ public class ReturnItemControl {
 		if (currentLoan.isOverDue())
 			Over_Due_Fine = library.calculateOverDueFine(currentLoan);
 		
-		ui.DiSpLaY("Inspecting");
-		ui.DiSpLaY(currentBookId.toString());
-		ui.DiSpLaY(currentLoan.toString());
+		ui.display("Inspecting");
+		ui.display(currentBookId.toString());
+		ui.display(currentLoan.toString());
 		
 		if (currentLoan.isOverDue())
-			ui.DiSpLaY(String.format("\nOverdue fine : $%.2f", Over_Due_Fine));
+			ui.display(String.format("\nOverdue fine : $%.2f", Over_Due_Fine));
 		
 		ui.SeTiNsPeCtInG();
 		state = ControlState.INSPECTING;

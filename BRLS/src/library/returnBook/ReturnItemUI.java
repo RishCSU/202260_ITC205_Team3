@@ -76,7 +76,7 @@ public class ReturnItemUI {
 	}
 	
 			
-	public void DiSpLaY(Object object) {
+	public void display(Object object) {
 		DiSpLaYoUtPuT(object);
 	}
 	
