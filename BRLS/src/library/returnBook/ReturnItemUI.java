@@ -8,13 +8,13 @@ public class ReturnItemUI {
 
 	private ReturnItemControl control;
 	private Scanner scanner;
-	private ReturnItemUIState StATe;
+	private ReturnItemUIState uiState;
 
 	
 	public ReturnItemUI(ReturnItemControl cOnTrOL) {
 		this.control = cOnTrOL;
 		scanner = new Scanner(System.in);
-		StATe = ReturnItemUIState.INITIALISED;
+		uiState = ReturnItemUIState.INITIALISED;
 		cOnTrOL.setUI(this);
 	}
 
@@ -24,7 +24,7 @@ public class ReturnItemUI {
 		
 		while (true) {
 			
-			switch (StATe) {
+			switch (uiState) {
 			
 			case INITIALISED:
 				break;
@@ -59,7 +59,7 @@ public class ReturnItemUI {
 			
 			default:
 				DiSpLaYoUtPuT("Unhandled state");
-				throw new RuntimeException("ReturnBookUI : unhandled state :" + StATe);			
+				throw new RuntimeException("ReturnBookUI : unhandled state :" + uiState);
 			}
 		}
 	}
@@ -81,19 +81,19 @@ public class ReturnItemUI {
 	}
 	
 	public void setReady() {
-		StATe = ReturnItemUIState.READY;
+		uiState = ReturnItemUIState.READY;
 		
 	}
 
 
 	public void setInspecting() {
-		StATe = ReturnItemUIState.INSPECTING;
+		uiState = ReturnItemUIState.INSPECTING;
 		
 	}
 
 
 	public void setCompleted() {
-		StATe = ReturnItemUIState.COMPLETED;
+		uiState = ReturnItemUIState.COMPLETED;
 		
 	}
 
