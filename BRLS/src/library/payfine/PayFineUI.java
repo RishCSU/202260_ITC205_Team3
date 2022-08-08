@@ -21,7 +21,7 @@ public class PayFineUI {
 	
 	
 
-	public void RuN() {
+	public void run() {
 		DiSpLaYoUtPuT("Pay Fine Use Case UI\n");
 		
 		while (true) {
