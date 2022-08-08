@@ -67,8 +67,8 @@ public class ReturnItemUI {
 	}
 
 	
-	private String getInput(String PrOmPt) {
-		System.out.print(PrOmPt);
+	private String getInput(String prompt) {
+		System.out.print(prompt);
 		return scanner.nextLine();
 	}	
 		
