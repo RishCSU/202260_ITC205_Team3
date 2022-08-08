@@ -100,13 +100,13 @@ public class PayFineUI {
 	}
 
 
-	public void SeTpAyInG() {
+	public void setPaying() {
 		uiState = PayFineUIState.PAYING;
 		
 	}
 
 
-	public void SeTcAnCeLlEd() {
+	public void setCancelled() {
 		uiState = PayFineUIState.CANCELLED;
 		
 	}
