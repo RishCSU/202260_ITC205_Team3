@@ -37,8 +37,8 @@ public class ReturnItemUI {
 				
 				else {
 					try {
-						long Book_Id = Long.valueOf(bookInputString).longValue();
-						control.itemScanned(Book_Id);
+						long bookId = Long.valueOf(bookInputString).longValue();
+						control.itemScanned(bookId);
 					}
 					catch (NumberFormatException e) {
 						displayOutput("Invalid bookId");
