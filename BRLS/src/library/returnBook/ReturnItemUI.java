@@ -31,8 +31,9 @@ public class ReturnItemUI {
 				
 			case READY:
 				String bookInputString = getInput("Scan Book (<enter> completes): ");
-				if (bookInputString.length() == 0)
+				if (bookInputString.length() == 0) {
 					control.scanningCompleted();
+				}
 				
 				else {
 					try {
