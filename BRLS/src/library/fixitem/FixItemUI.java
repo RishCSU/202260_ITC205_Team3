@@ -6,12 +6,12 @@ public class FixItemUI {
 
 	private enum uI_sTaTe { INITIALISED, READY, INSPECTING, COMPLETED };
 
-	private fIX_iTeM_cONTROL CoNtRoL;
+	private FixItemControl CoNtRoL;
 	private Scanner InPuT;
 	private uI_sTaTe StAtE;
 
 	
-	public FixItemUI(fIX_iTeM_cONTROL CoNtRoL) {
+	public FixItemUI(FixItemControl CoNtRoL) {
 		this.CoNtRoL = CoNtRoL;
 		InPuT = new Scanner(System.in);
 		StAtE = uI_sTaTe.INITIALISED;
