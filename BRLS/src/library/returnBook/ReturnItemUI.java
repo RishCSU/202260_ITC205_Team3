@@ -30,7 +30,7 @@ public class ReturnItemUI {
 				break;
 				
 			case READY:
-				String BoOk_InPuT_StRiNg = GeTiNpUt("Scan Book (<enter> completes): ");
+				String BoOk_InPuT_StRiNg = getInput("Scan Book (<enter> completes): ");
 				if (BoOk_InPuT_StRiNg.length() == 0) 
 					control.scanningCompleted();
 				
@@ -46,7 +46,7 @@ public class ReturnItemUI {
 				break;				
 				
 			case INSPECTING:
-				String AnS = GeTiNpUt("Is book damaged? (Y/N): ");
+				String AnS = getInput("Is book damaged? (Y/N): ");
 				boolean Is_DAmAgEd = false;
 				if (AnS.toUpperCase().equals("Y")) 					
 					Is_DAmAgEd = true;
@@ -65,7 +65,7 @@ public class ReturnItemUI {
 	}
 
 	
-	private String GeTiNpUt(String PrOmPt) {
+	private String getInput(String PrOmPt) {
 		System.out.print(PrOmPt);
 		return scanner.nextLine();
 	}	
