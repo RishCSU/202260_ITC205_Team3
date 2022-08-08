@@ -19,7 +19,7 @@ public class ReturnItemControl {
 	}
 	
 	
-	public void sEt_uI(ReturnItemUI uI) {
+	public void setUI(ReturnItemUI uI) {
 		if (!state.equals(ControlState.INITIALISED))
 			throw new RuntimeException("ReturnBookControl: cannot call setUI except in INITIALISED state");
 		

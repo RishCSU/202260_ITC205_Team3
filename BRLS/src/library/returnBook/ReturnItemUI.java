@@ -15,7 +15,7 @@ public class ReturnItemUI {
 		this.CoNtRoL = cOnTrOL;
 		iNpUt = new Scanner(System.in);
 		StATe = uI_sTaTe.INITIALISED;
-		cOnTrOL.sEt_uI(this);
+		cOnTrOL.setUI(this);
 	}
 
 
