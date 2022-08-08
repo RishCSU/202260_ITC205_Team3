@@ -92,7 +92,7 @@ public class ReturnItemUI {
 	}
 
 
-	public void SeTCoMpLeTeD() {
+	public void setCompleted() {
 		StATe = uI_sTaTe.COMPLETED;
 		
 	}

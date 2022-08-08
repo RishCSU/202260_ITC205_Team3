@@ -63,7 +63,7 @@ public class ReturnItemControl {
 		if (!state.equals(ControlState.READY))
 			throw new RuntimeException("ReturnBookControl: cannot call scanningComplete except in READY state");
 		
-		ui.SeTCoMpLeTeD();
+		ui.setCompleted();
 	}
 
 
