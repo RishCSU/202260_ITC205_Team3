@@ -28,12 +28,11 @@ public class ReturnItemControl {
 		state = ControlState.READY;
 	}
 
-
-	public void bOoK_sCaNnEd(long bOoK_iD) {
+	public void bOoK_sCaNnEd(long bookId) {
 		if (!state.equals(ControlState.READY))
 			throw new RuntimeException("ReturnBookControl: cannot call bookScanned except in READY state");
 		
-		Item cUrReNt_bOoK = library.getItem(bOoK_iD);
+		Item cUrReNt_bOoK = library.getItem(bookId);
 		
 		if (cUrReNt_bOoK == null) {
 			ui.DiSpLaY("Invalid Book Id");
@@ -43,7 +42,7 @@ public class ReturnItemControl {
 			ui.DiSpLaY("Book has not been borrowed");
 			return;
 		}		
-		currentLoan = library.getLoanByItemId(bOoK_iD);
+		currentLoan = library.getLoanByItemId(bookId);
 		double Over_Due_Fine = 0.0;
 		if (currentLoan.isOverDue())
 			Over_Due_Fine = library.calculateOverDueFine(currentLoan);
