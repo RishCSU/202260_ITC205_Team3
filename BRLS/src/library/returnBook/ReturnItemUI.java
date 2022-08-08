@@ -30,13 +30,13 @@ public class ReturnItemUI {
 				break;
 				
 			case READY:
-				String BoOk_InPuT_StRiNg = getInput("Scan Book (<enter> completes): ");
-				if (BoOk_InPuT_StRiNg.length() == 0) 
+				String bookInputString = getInput("Scan Book (<enter> completes): ");
+				if (bookInputString.length() == 0)
 					control.scanningCompleted();
 				
 				else {
 					try {
-						long Book_Id = Long.valueOf(BoOk_InPuT_StRiNg).longValue();
+						long Book_Id = Long.valueOf(bookInputString).longValue();
 						control.itemScanned(Book_Id);
 					}
 					catch (NumberFormatException e) {
