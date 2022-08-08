@@ -4,7 +4,7 @@ import library.borrowitem.BorrowItemUI;
 import library.borrowitem.bORROW_IteM_cONTROL;
 import library.entities.*;
 import library.fixitem.FixItemUI;
-import library.fixitem.fIX_iTeM_cONTROL;
+import library.fixitem.FixItemControl;
 import library.payfine.PayFineUI;
 import library.payfine.PayFineControl;
 import library.returnBook.ReturnBookUI;
@@ -169,7 +169,7 @@ public class Main {
 
 
 	private static void FIX_ITEMS() {
-		new FixItemUI(new fIX_iTeM_cONTROL()).RuN();		
+		new FixItemUI(new FixItemControl()).RuN();		
 	}
 
 
