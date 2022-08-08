@@ -35,8 +35,8 @@ public class PayFineUI {
 					break;
 				}
 				try {
-					long PAtroN_ID = Long.valueOf(patronString).longValue();
-					control.CaRd_sWiPeD(PAtroN_ID);
+					long patronId = Long.valueOf(patronString).longValue();
+					control.CaRd_sWiPeD(patronId);
 				}
 				catch (NumberFormatException e) {
 					displayOutput("Invalid patronID");
@@ -44,21 +44,21 @@ public class PayFineUI {
 				break;
 				
 			case PAYING:
-				double AmouNT = 0;
-				String Amt_Str = getInput("Enter amount (<Enter> cancels) : ");
-				if (Amt_Str.length() == 0) {
+				double amount = 0;
+				String amountString = getInput("Enter amount (<Enter> cancels) : ");
+				if (amountString.length() == 0) {
 					control.CaNcEl();
 					break;
 				}
 				try {
-					AmouNT = Double.valueOf(Amt_Str).doubleValue();
+					amount = Double.valueOf(amountString).doubleValue();
 				}
 				catch (NumberFormatException e) {}
-				if (AmouNT <= 0) {
+				if (amount <= 0) {
 					displayOutput("Amount must be positive");
 					break;
 				}
-				control.PaY_FiNe(AmouNT);
+				control.PaY_FiNe(amount);
 				break;
 								
 			case CANCELLED:
