@@ -32,7 +32,7 @@ public class ReturnItemUI {
 			case READY:
 				String BoOk_InPuT_StRiNg = GeTiNpUt("Scan Book (<enter> completes): ");
 				if (BoOk_InPuT_StRiNg.length() == 0) 
-					CoNtRoL.sCaNnInG_cOmPlEtEd();
+					CoNtRoL.scanningCompleted();
 				
 				else {
 					try {
