@@ -246,8 +246,8 @@ public class Main {
 			String LaSt_NaMe = getInput("Enter last name: ");
 			String EmAiL_AdDrEsS = getInput("Enter email address: ");
 			long PhOnE_NuMbEr = Long.valueOf(getInput("Enter phone number: ")).intValue();
-			Patron PaTrOn = library.addPatron(FiRsT_NaMe, LaSt_NaMe, EmAiL_AdDrEsS, PhOnE_NuMbEr);
-			displayOutput("\n" + PaTrOn + "\n");
+			Patron patron = library.addPatron(FiRsT_NaMe, LaSt_NaMe, EmAiL_AdDrEsS, PhOnE_NuMbEr);
+			displayOutput("\n" + patron + "\n");
 			
 		} catch (NumberFormatException e) {
 			 displayOutput("\nInvalid phone number\n");
