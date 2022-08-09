@@ -69,7 +69,7 @@ public class Main {
 				switch (choice.toUpperCase()) {
 				
 				case "AP": 
-					ADD_PATRON();
+					addPatron();
 					break;
 					
 				case "LP": 
@@ -240,7 +240,7 @@ public class Main {
 	}
 
 	
-	private static void ADD_PATRON() {
+	private static void addPatron() {
 		try {
 			String FiRsT_NaMe  = input("Enter first name: ");
 			String LaSt_NaMe = input("Enter last name: ");
