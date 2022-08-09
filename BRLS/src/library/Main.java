@@ -231,10 +231,10 @@ public class Main {
 			}
 		}
 
-		String AuThOr = getInput("Enter author: ");
-		String TiTlE  = getInput("Enter title: ");
-		String CaLl_NuMbEr = getInput("Enter call number: ");
-		Item BoOk = library.addItem(AuThOr, TiTlE, CaLl_NuMbEr, itemType);
+		String author = getInput("Enter author: ");
+		String title  = getInput("Enter title: ");
+		String callNumber = getInput("Enter call number: ");
+		Item BoOk = library.addItem(author, title, callNumber, itemType);
 		displayOutput("\n" + BoOk + "\n");
 		
 	}
