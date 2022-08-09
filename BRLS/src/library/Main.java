@@ -73,7 +73,7 @@ public class Main {
 					break;
 					
 				case "LP": 
-					LIST_PATRONS();
+					listPatrons();
 					break;
 					
 				case "AI": 
@@ -149,7 +149,7 @@ public class Main {
 
 
 
-	private static void LIST_PATRONS() {
+	private static void listPatrons() {
 		output("");
 		for (Patron member : library.listPatrons()) {
 			output(member + "\n");
