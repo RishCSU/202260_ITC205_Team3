@@ -19,31 +19,31 @@ public class BorrowItemUI {
 	}
 
 	
-	private String GeTiNpUt(String PrOmPt) {
-		System.out.print(PrOmPt);
+	private String getInput(String prompt) {
+		System.out.print(prompt);
 		return scanner.nextLine();
 	}	
 		
 		
-	private void DiSpLaYoUtPuT(Object ObJeCt) {
-		System.out.println(ObJeCt);
+	private void displayOutput(Object object) {
+		System.out.println(object);
 	}
 	
 				
-	public void RuN() {
-		DiSpLaYoUtPuT("Borrow Item Use Case UI\n");
+	public void run() {
+		displayOutput("Borrow Item Use Case UI\n");
 		
 		while (true) {
 			
 			switch (uiState) {			
 			
 			case CANCELLED:
-				DiSpLaYoUtPuT("Borrowing Cancelled");
+				displayOutput("Borrowing Cancelled");
 				return;
 
 				
 			case READY:
-				String PAT_STR = GeTiNpUt("Swipe patron card (press <enter> to cancel): ");
+				String PAT_STR = getInput("Swipe patron card (press <enter> to cancel): ");
 				if (PAT_STR.length() == 0) {
 					control.cancel();
 					break;
@@ -53,19 +53,19 @@ public class BorrowItemUI {
 					control.cardSwiped(PaTrOn_Id);
 				}
 				catch (NumberFormatException e) {
-					DiSpLaYoUtPuT("Invalid Patron Id");
+					displayOutput("Invalid Patron Id");
 				}
 				break;
 
 				
 			case RESTRICTED:
-				GeTiNpUt("Press <any key> to cancel");
+				getInput("Press <any key> to cancel");
 				control.cancel();
 				break;
 			
 				
 			case SCANNING:
-				String Item_StRiNg_InPuT = GeTiNpUt("Scan Item (<enter> completes): ");
+				String Item_StRiNg_InPuT = getInput("Scan Item (<enter> completes): ");
 				if (Item_StRiNg_InPuT.length() == 0) {
 					control.borrowingCompleted();
 					break;
@@ -75,38 +75,38 @@ public class BorrowItemUI {
 					control.itemScanned(IiD);
 					
 				} catch (NumberFormatException e) {
-					DiSpLaYoUtPuT("Invalid Item Id");
+					displayOutput("Invalid Item Id");
 				} 
 				break;
 					
 				
 			case FINALISING:
-				String AnS = GeTiNpUt("Commit loans? (Y/N): ");
+				String AnS = getInput("Commit loans? (Y/N): ");
 				if (AnS.toUpperCase().equals("N")) {
 					control.cancel();
 					
 				} else {
 					control.commitLoans();
-					GeTiNpUt("Press <any key> to complete ");
+					getInput("Press <any key> to complete ");
 				}
 				break;
 				
 				
 			case COMPLETED:
-				DiSpLaYoUtPuT("Borrowing Completed");
+				displayOutput("Borrowing Completed");
 				return;
 	
 				
 			default:
-				DiSpLaYoUtPuT("Unhandled state");
+				displayOutput("Unhandled state");
 				throw new RuntimeException("BorrowItemUI : unhandled state :" + uiState);			
 			}
 		}		
 	}
 
 
-	public void DiSpLaY(Object object) {
-		DiSpLaYoUtPuT(object);		
+	public void display(Object object) {
+		displayOutput(object);		
 	}
 
 

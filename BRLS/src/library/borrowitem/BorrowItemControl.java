@@ -45,7 +45,7 @@ public class BorrowItemControl {
 
         patron = library.getPatron(patronId);
         if (patron == null) {
-            ui.DiSpLaY("Invalid patronId");
+            ui.display("Invalid patronId");
             return;
         }
 
@@ -54,7 +54,7 @@ public class BorrowItemControl {
             ui.setScanning();
             state = ControlState.SCANNING; 
         } else {
-            ui.DiSpLaY("Patron cannot borrow at this time");
+            ui.display("Patron cannot borrow at this time");
             ui.setRestricted(); 
         }
     }
@@ -68,22 +68,22 @@ public class BorrowItemControl {
 
         item = library.getItem(itemId);
         if (item == null) {
-            ui.DiSpLaY("Invalid itemId");
+            ui.display("Invalid itemId");
             return;
         }
 
         if (!item.isAvailable()) {
-            ui.DiSpLaY("Item cannot be borrowed");
+            ui.display("Item cannot be borrowed");
             return;
         }
 
         pendingList.add(item);
         for (Item item : pendingList) {
-            ui.DiSpLaY(item);
+            ui.display(item);
         }
 
         if (library.getNumberOfLoansRemainingForPatron(patron) - pendingList.size() == 0) {
-            ui.DiSpLaY("Loan limit reached");
+            ui.display("Loan limit reached");
             borrowingCompleted();
         }
     }
@@ -93,9 +93,9 @@ public class BorrowItemControl {
         if (pendingList.size() == 0) {
             cancel();
         } else {
-            ui.DiSpLaY("\nFinal Borrowing List");
+            ui.display("\nFinal Borrowing List");
             for (Item item : pendingList) {
-                ui.DiSpLaY(item);
+                ui.display(item);
             }
             completedList = new ArrayList<Loan>();
             ui.setFinalising();
@@ -114,9 +114,9 @@ public class BorrowItemControl {
             completedList.add(loan);            
         }
 
-        ui.DiSpLaY("Completed Loan Slip");
+        ui.display("Completed Loan Slip");
         for (Loan loan : completedList) {
-            ui.DiSpLaY(loan);
+            ui.display(loan);
         }
 
         ui.setCompleted();
