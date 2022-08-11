@@ -43,14 +43,15 @@ public class BorrowItemUI {
 
 				
 			case READY:
-				String PAT_STR = getInput("Swipe patron card (press <enter> to cancel): ");
-				if (PAT_STR.length() == 0) {
+				String patronString = getInput("Swipe patron card (press <enter> to cancel): ");
+				if (patronString.length() == 0) {
 					control.cancel();
 					break;
 				}
+
 				try {
-					long PaTrOn_Id = Long.valueOf(PAT_STR).longValue();
-					control.cardSwiped(PaTrOn_Id);
+					long patronId = Long.valueOf(patronString).longValue();
+					control.cardSwiped(patronId);
 				}
 				catch (NumberFormatException e) {
 					displayOutput("Invalid Patron Id");
@@ -65,14 +66,14 @@ public class BorrowItemUI {
 			
 				
 			case SCANNING:
-				String Item_StRiNg_InPuT = getInput("Scan Item (<enter> completes): ");
-				if (Item_StRiNg_InPuT.length() == 0) {
+				String itemStringInput = getInput("Scan Item (<enter> completes): ");
+				if (itemStringInput.length() == 0) {
 					control.borrowingCompleted();
 					break;
 				}
 				try {
-					int IiD = Integer.valueOf(Item_StRiNg_InPuT).intValue();
-					control.itemScanned(IiD);
+					int itemId = Integer.valueOf(itemStringInput).intValue();
+					control.itemScanned(itemId);
 					
 				} catch (NumberFormatException e) {
 					displayOutput("Invalid Item Id");
@@ -81,8 +82,8 @@ public class BorrowItemUI {
 					
 				
 			case FINALISING:
-				String AnS = getInput("Commit loans? (Y/N): ");
-				if (AnS.toUpperCase().equals("N")) {
+				String answer = getInput("Commit loans? (Y/N): ");
+				if (answer.toUpperCase().equals("N")) {
 					control.cancel();
 					
 				} else {
@@ -112,38 +113,28 @@ public class BorrowItemUI {
 
 	public void setReady() {
 		uiState = BorrowItemUIState.READY;
-		
 	}
 
 
 	public void setScanning() {
 		uiState = BorrowItemUIState.SCANNING;
-		
 	}
 
 
 	public void setRestricted() {
 		uiState = BorrowItemUIState.RESTRICTED;
-		
 	}
 
 	public void setFinalising() {
 		uiState = BorrowItemUIState.FINALISING;
-		
 	}
-
 
 	public void setCompleted() {
 		uiState = BorrowItemUIState.COMPLETED;
-		
 	}
 
 	public void setCancelled() {
 		uiState = BorrowItemUIState.CANCELLED;
-		
 	}
-
-
-
 
 }
