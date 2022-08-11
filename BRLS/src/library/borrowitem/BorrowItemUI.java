@@ -52,8 +52,7 @@ public class BorrowItemUI {
 				try {
 					long patronId = Long.valueOf(patronString).longValue();
 					control.cardSwiped(patronId);
-				}
-				catch (NumberFormatException e) {
+				} catch (NumberFormatException e) {
 					displayOutput("Invalid Patron Id");
 				}
 				break;
@@ -71,10 +70,10 @@ public class BorrowItemUI {
 					control.borrowingCompleted();
 					break;
 				}
+
 				try {
 					int itemId = Integer.valueOf(itemStringInput).intValue();
 					control.itemScanned(itemId);
-					
 				} catch (NumberFormatException e) {
 					displayOutput("Invalid Item Id");
 				} 
@@ -85,7 +84,6 @@ public class BorrowItemUI {
 				String answer = getInput("Commit loans? (Y/N): ");
 				if (answer.toUpperCase().equals("N")) {
 					control.cancel();
-					
 				} else {
 					control.commitLoans();
 					getInput("Press <any key> to complete ");
