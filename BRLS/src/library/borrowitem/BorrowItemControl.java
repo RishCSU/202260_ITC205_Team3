@@ -27,21 +27,21 @@ public class BorrowItemControl {
 	}
 	
 
-	public void SeT_Ui(BorrowItemUI Ui) {
+	public void setUI(BorrowItemUI ui) {
 		if (!state.equals(ControlState.INITIALISED)) 
 			throw new RuntimeException("BorrowItemControl: cannot call setUI except in INITIALISED state");
 			
-		this.ui = Ui;
+		this.ui = ui;
 		ui.setReady();
 		state = ControlState.READY;		
 	}
 
 		
-	public void CaRdSwIpEd(long PaTrOn_Id) {
+	public void cardSwiped(long patronId) {
 		if (!state.equals(ControlState.READY)) 
 			throw new RuntimeException("BorrowItemControl: cannot call cardSwiped except in READY state");
 			
-		patron = library.getPatron(PaTrOn_Id);
+		patron = library.getPatron(patronId);
 		if (patron == null) {
 			ui.DiSpLaY("Invalid patronId");
 			return;
@@ -58,12 +58,12 @@ public class BorrowItemControl {
 	}
 	
 	
-	public void ItEmScAnNeD(int ItEmiD) {
+	public void itemScanned(int itemId) {
 		item = null;
 		if (!state.equals(ControlState.SCANNING)) 
 			throw new RuntimeException("BorrowItemControl: cannot call itemScanned except in SCANNING state");
 			
-		item = library.getItem(ItEmiD);
+		item = library.getItem(itemId);
 		if (item == null) {
 			ui.DiSpLaY("Invalid itemId");
 			return;
@@ -78,14 +78,14 @@ public class BorrowItemControl {
 		
 		if (library.getNumberOfLoansRemainingForPatron(patron) - pendingList.size() == 0) {
 			ui.DiSpLaY("Loan limit reached");
-			BoRrOwInGcOmPlEtEd();
+			borrowingCompleted();
 		}
 	}
 	
 	
-	public void BoRrOwInGcOmPlEtEd() {
+	public void borrowingCompleted() {
 		if (pendingList.size() == 0) 
-			CaNcEl();
+			cancel();
 		
 		else {
 			ui.DiSpLaY("\nFinal Borrowing List");
@@ -99,7 +99,7 @@ public class BorrowItemControl {
 	}
 
 
-	public void CoMmIt_LoAnS() {
+	public void commitLoans() {
 		if (!state.equals(ControlState.FINALISING)) 
 			throw new RuntimeException("BorrowItemControl: cannot call commitLoans except in FINALISING state");
 			
@@ -116,7 +116,7 @@ public class BorrowItemControl {
 	}
 
 	
-	public void CaNcEl() {
+	public void cancel() {
 		ui.setCancelled();
 		state = ControlState.CANCELLED;
 	}
