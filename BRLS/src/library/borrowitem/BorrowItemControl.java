@@ -28,9 +28,10 @@ public class BorrowItemControl {
 	
 
 	public void setUI(BorrowItemUI ui) {
-		if (!state.equals(ControlState.INITIALISED)) 
+		if (!state.equals(ControlState.INITIALISED)) {
 			throw new RuntimeException("BorrowItemControl: cannot call setUI except in INITIALISED state");
-			
+		}
+
 		this.ui = ui;
 		ui.setReady();
 		state = ControlState.READY;		
@@ -38,20 +39,21 @@ public class BorrowItemControl {
 
 		
 	public void cardSwiped(long patronId) {
-		if (!state.equals(ControlState.READY)) 
+		if (!state.equals(ControlState.READY)) {
 			throw new RuntimeException("BorrowItemControl: cannot call cardSwiped except in READY state");
-			
+		}
+
 		patron = library.getPatron(patronId);
 		if (patron == null) {
 			ui.DiSpLaY("Invalid patronId");
 			return;
 		}
+
 		if (library.canPatronBorrow(patron)) {
 			pendingList = new ArrayList<>();
 			ui.setScanning();
 			state = ControlState.SCANNING; 
-		}
-		else {
+		} else {
 			ui.DiSpLaY("Patron cannot borrow at this time");
 			ui.setRestricted(); 
 		}
@@ -60,22 +62,26 @@ public class BorrowItemControl {
 	
 	public void itemScanned(int itemId) {
 		item = null;
-		if (!state.equals(ControlState.SCANNING)) 
+		if (!state.equals(ControlState.SCANNING)) {
 			throw new RuntimeException("BorrowItemControl: cannot call itemScanned except in SCANNING state");
-			
+		}
+
 		item = library.getItem(itemId);
 		if (item == null) {
 			ui.DiSpLaY("Invalid itemId");
 			return;
 		}
+
 		if (!item.isAvailable()) {
 			ui.DiSpLaY("Item cannot be borrowed");
 			return;
 		}
+
 		pendingList.add(item);
-		for (Item ItEm : pendingList) 
+		for (Item ItEm : pendingList) {
 			ui.DiSpLaY(ItEm);
-		
+		}
+
 		if (library.getNumberOfLoansRemainingForPatron(patron) - pendingList.size() == 0) {
 			ui.DiSpLaY("Loan limit reached");
 			borrowingCompleted();
@@ -84,14 +90,13 @@ public class BorrowItemControl {
 	
 	
 	public void borrowingCompleted() {
-		if (pendingList.size() == 0) 
+		if (pendingList.size() == 0) {
 			cancel();
-		
-		else {
+		} else {
 			ui.DiSpLaY("\nFinal Borrowing List");
-			for (Item ItEm : pendingList) 
+			for (Item ItEm : pendingList) {
 				ui.DiSpLaY(ItEm);
-			
+			}
 			completedList = new ArrayList<Loan>();
 			ui.setFinalising();
 			state = ControlState.FINALISING;
@@ -100,17 +105,20 @@ public class BorrowItemControl {
 
 
 	public void commitLoans() {
-		if (!state.equals(ControlState.FINALISING)) 
+		if (!state.equals(ControlState.FINALISING)) {
 			throw new RuntimeException("BorrowItemControl: cannot call commitLoans except in FINALISING state");
-			
+		}
+
 		for (Item B : pendingList) {
 			Loan lOaN = library.issueLoan(B, patron);
 			completedList.add(lOaN);			
 		}
-		ui.DiSpLaY("Completed Loan Slip");
-		for (Loan LOAN : completedList) 
-			ui.DiSpLaY(LOAN);
 		
+		ui.DiSpLaY("Completed Loan Slip");
+		for (Loan LOAN : completedList) {
+			ui.DiSpLaY(LOAN);
+		}
+
 		ui.setCompleted();
 		state = ControlState.COMPLETED;
 	}
