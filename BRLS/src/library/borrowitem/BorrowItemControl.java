@@ -78,8 +78,8 @@ public class BorrowItemControl {
 		}
 
 		pendingList.add(item);
-		for (Item ItEm : pendingList) {
-			ui.DiSpLaY(ItEm);
+		for (Item item : pendingList) {
+			ui.DiSpLaY(item);
 		}
 
 		if (library.getNumberOfLoansRemainingForPatron(patron) - pendingList.size() == 0) {
@@ -94,8 +94,8 @@ public class BorrowItemControl {
 			cancel();
 		} else {
 			ui.DiSpLaY("\nFinal Borrowing List");
-			for (Item ItEm : pendingList) {
-				ui.DiSpLaY(ItEm);
+			for (Item item : pendingList) {
+				ui.DiSpLaY(item);
 			}
 			completedList = new ArrayList<Loan>();
 			ui.setFinalising();
@@ -109,14 +109,14 @@ public class BorrowItemControl {
 			throw new RuntimeException("BorrowItemControl: cannot call commitLoans except in FINALISING state");
 		}
 
-		for (Item B : pendingList) {
-			Loan lOaN = library.issueLoan(B, patron);
-			completedList.add(lOaN);			
+		for (Item item : pendingList) {
+			Loan loan = library.issueLoan(item, patron);
+			completedList.add(loan);			
 		}
-		
+
 		ui.DiSpLaY("Completed Loan Slip");
-		for (Loan LOAN : completedList) {
-			ui.DiSpLaY(LOAN);
+		for (Loan loan : completedList) {
+			ui.DiSpLaY(loan);
 		}
 
 		ui.setCompleted();
