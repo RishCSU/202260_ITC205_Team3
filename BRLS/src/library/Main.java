@@ -158,7 +158,8 @@ public class Main {
     }
 
     private static void fixItems() {
-        new FixItemUI(new fIX_iTeM_cONTROL()).RuN();        
+        fIX_iTeM_cONTROL fixItemControl = new fIX_iTeM_cONTROL();
+        new FixItemUI(fixItemControl).RuN();
     }
 
     private static void incrementDate() {
