@@ -4,7 +4,7 @@ import library.entities.Library;
 
 public class FixItemControl {
 	
-    private enum ControlState {INITIALISED, READY, INSPECTING };
+    private enum ControlState {INITIALISED, READY, INSPECTING};
     private ControlState state;
     private FixItemUI ui;
 	

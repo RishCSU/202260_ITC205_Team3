@@ -5,7 +5,7 @@ import library.entities.Patron;
 public class PayFineControl {
 	
     private PayFineUI ui;
-    private enum ControlState {INITIALISED, READY, PAYING, COMPLETED, CANCELLED };
+    private enum ControlState {INITIALISED, READY, PAYING, COMPLETED, CANCELLED};
     private ControlState state;
 	
     private Library library;
