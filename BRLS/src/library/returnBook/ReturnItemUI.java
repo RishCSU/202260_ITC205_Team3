@@ -19,43 +19,42 @@ public class ReturnItemUI {
         while (true) {
             
             switch (uiState) {
-            
-            case INITIALISED:
+                case INITIALISED:
                 break;
                 
-            case READY:
-                String bookInputString = getInput("Scan Book (<enter> completes): ");
-                if (bookInputString.length() == 0) {
-                    control.scanningCompleted();
-                }
-                
-                else {
-                    try {
-                        long bookId = Long.valueOf(bookInputString).longValue();
-                        control.itemScanned(bookId);
+                case READY:
+                    String bookInputString = getInput("Scan Book (<enter> completes): ");
+                    if (bookInputString.length() == 0) {
+                        control.scanningCompleted();
                     }
-                    catch (NumberFormatException e) {
-                        displayOutput("Invalid bookId");
-                    }                    
-                }
-                break;                
+                    
+                    else {
+                        try {
+                            long bookId = Long.valueOf(bookInputString).longValue();
+                            control.itemScanned(bookId);
+                        }
+                        catch (NumberFormatException e) {
+                            displayOutput("Invalid bookId");
+                        }                    
+                    }
+                    break;                
+                    
+                case INSPECTING:
+                    String userInput = getInput("Is book damaged? (Y/N): ");
+                    boolean isDamaged = false;
+                    if (userInput.toUpperCase().equals("Y")) {
+                        isDamaged = true;
+                    }
+                    
+                    control.dischargeLoan(isDamaged);
                 
-            case INSPECTING:
-                String userInput = getInput("Is book damaged? (Y/N): ");
-                boolean isDamaged = false;
-                if (userInput.toUpperCase().equals("Y")) {
-                    isDamaged = true;
-                }
+                case COMPLETED:
+                    displayOutput("Return processing complete");
+                    return;
                 
-                control.dischargeLoan(isDamaged);
-            
-            case COMPLETED:
-                displayOutput("Return processing complete");
-                return;
-            
-            default:
-                displayOutput("Unhandled state");
-                throw new RuntimeException("ReturnBookUI : unhandled state :" + uiState);
+                default:
+                    displayOutput("Unhandled state");
+                    throw new RuntimeException("ReturnBookUI : unhandled state :" + uiState);
             }
         }
     }
