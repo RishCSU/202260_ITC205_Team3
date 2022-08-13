@@ -153,7 +153,8 @@ public class Main {
     }
 
     private static void returnItem() {
-        new ReturnItemUI(new ReturnItemControl()).run();
+        ReturnItemControl returnItemControl = new ReturnItemControl();
+        new ReturnItemUI(returnItemControl).run();
     }
 
     private static void fixItems() {
