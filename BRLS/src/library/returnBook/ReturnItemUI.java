@@ -20,8 +20,8 @@ public class ReturnItemUI {
             
             switch (uiState) {
                 case INITIALISED:
-                break;
-                
+                    break;
+
                 case READY:
                     String bookInputString = getInput("Scan Book (<enter> completes): ");
                     if (bookInputString.length() == 0) {
