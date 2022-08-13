@@ -122,7 +122,8 @@ public class Main {
     }    
 
     private static void payFines() {
-        new PayFineUI(new pAY_fINE_cONTROL()).RuN();        
+        pAY_fINE_cONTROL newPayFineControl = new pAY_fINE_cONTROL();
+        new PayFineUI(newPayFineControl).RuN();
     }
 
     private static void listCurrentLoans() {
