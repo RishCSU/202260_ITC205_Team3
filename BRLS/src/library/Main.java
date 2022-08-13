@@ -148,7 +148,8 @@ public class Main {
     }
 
     private static void borrowItem() {
-        new BorrowItemUI(new bORROW_IteM_cONTROL()).RuN();        
+        bORROW_IteM_cONTROL borrowItemControl = new bORROW_IteM_cONTROL();
+        new BorrowItemUI(borrowItemControl).RuN();
     }
 
     private static void returnItem() {
