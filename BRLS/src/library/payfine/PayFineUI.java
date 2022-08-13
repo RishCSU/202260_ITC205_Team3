@@ -28,48 +28,48 @@ public class PayFineUI {
 			
             switch (uiState) {
 			
-            case READY:
-                String patronString = getInput("Swipe patron card (press <enter> to cancel): ");
-                if (patronString.length() == 0) {
-                    control.cancel();
+                case READY:
+                    String patronString = getInput("Swipe patron card (press <enter> to cancel): ");
+                    if (patronString.length() == 0) {
+                        control.cancel();
+                        break;
+                    }
+                    try {
+                        long patronId = Long.valueOf(patronString).longValue();
+                        control.cardSwiped(patronId);
+                    } catch (NumberFormatException e) {
+                        displayOutput("Invalid patronID");
+                    }
                     break;
-                }
-                try {
-                    long patronId = Long.valueOf(patronString).longValue();
-                    control.cardSwiped(patronId);
-                } catch (NumberFormatException e) {
-                    displayOutput("Invalid patronID");
-                }
-                break;
 				
-            case PAYING:
-                double amount = 0;
-                String amountString = getInput("Enter amount (<Enter> cancels) : ");
-                if (amountString.length() == 0) {
-                    control.cancel();
+                case PAYING:
+                    double amount = 0;
+                    String amountString = getInput("Enter amount (<Enter> cancels) : ");
+                    if (amountString.length() == 0) {
+                        control.cancel();
+                        break;
+                    }
+                    try {
+                        amount = Double.valueOf(amountString).doubleValue();
+                    } catch (NumberFormatException e) {}
+                    if (amount <= 0) {
+                        displayOutput("Amount must be positive");
+                        break;
+                    }
+                    control.payFine(amount);
                     break;
-                }
-                try {
-                    amount = Double.valueOf(amountString).doubleValue();
-                } catch (NumberFormatException e) {}
-                if (amount <= 0) {
-                    displayOutput("Amount must be positive");
-                    break;
-                }
-                control.payFine(amount);
-                break;
 								
-            case CANCELLED:
-                displayOutput("Pay Fine process cancelled");
-                return;
+                case CANCELLED:
+                    displayOutput("Pay Fine process cancelled");
+                    return;
 			
-            case COMPLETED:
-                displayOutput("Pay Fine process complete");
-                return;
+                case COMPLETED:
+                    displayOutput("Pay Fine process complete");
+                    return;
 			
-            default:
-                displayOutput("Unhandled state");
-                throw new RuntimeException("FixBookUI : unhandled state :" + uiState);			
+                default:
+                    displayOutput("Unhandled state");
+                    throw new RuntimeException("FixBookUI : unhandled state :" + uiState);			
 			
             }		
         }		

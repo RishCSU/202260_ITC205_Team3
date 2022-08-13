@@ -24,36 +24,36 @@ public class FixItemUI {
 			
             switch (uiState) {
 			
-            case READY:
-                String itemEntryString = getInput("Scan Item (<enter> completes): ");
-                if (itemEntryString.length() == 0) {
-                    control.processingCompleted();
-                } else {
-                    try {
-                        long itemId = Long.valueOf(itemEntryString).longValue();
-                        control.itemScanned(itemId);
-                    } catch (NumberFormatException e) {
-                        displayOutput("Invalid itemId");
+                case READY:
+                    String itemEntryString = getInput("Scan Item (<enter> completes): ");
+                    if (itemEntryString.length() == 0) {
+                        control.processingCompleted();
+                    } else {
+                        try {
+                            long itemId = Long.valueOf(itemEntryString).longValue();
+                            control.itemScanned(itemId);
+                        } catch (NumberFormatException e) {
+                            displayOutput("Invalid itemId");
+                        }
                     }
-                }
-                break;	
+                    break;	
 				
-            case INSPECTING:
-                String answer = getInput("Fix Item? (Y/N) : ");
-                boolean mustFix = false;
-                if (answer.toUpperCase().equals("Y")) {
-                    mustFix = true;
-                }
-                control.itemInspected(mustFix);
-                break;
+                case INSPECTING:
+                    String answer = getInput("Fix Item? (Y/N) : ");
+                    boolean mustFix = false;
+                    if (answer.toUpperCase().equals("Y")) {
+                        mustFix = true;
+                    }
+                    control.itemInspected(mustFix);
+                    break;
 								
-            case COMPLETED:
-                displayOutput("Fixing process complete");
-                return;
+                case COMPLETED:
+                    displayOutput("Fixing process complete");
+                    return;
 			
-            default:
-                displayOutput("Unhandled state");
-                throw new RuntimeException("FixItemUI : unhandled state :" + uiState);			
+                default:
+                    displayOutput("Unhandled state");
+                    throw new RuntimeException("FixItemUI : unhandled state :" + uiState);			
             }		
         }	
     }
