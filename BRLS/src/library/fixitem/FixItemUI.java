@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class FixItemUI {
 
-    private enum FixItemUIState {INITIALISED, READY, INSPECTING, COMPLETED };
+    private enum FixItemUIState {INITIALISED, READY, INSPECTING, COMPLETED};
 
     private FixItemControl control;
     private Scanner scanner;
