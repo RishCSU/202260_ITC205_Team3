@@ -164,7 +164,10 @@ public class Main {
 
     private static void incrementDate() {
         try {
-            int days = Integer.valueOf(getInput("Enter number of days: ")).intValue();
+
+            String prompt = "Enter number of days: ";
+            String display = getInput(prompt);
+            int days = Integer.valueOf(display);
             calendar.incrementDate(days);
             library.updateCurrentLoansStatus();
             displayOutput(simpleDateFormat.format(calendar.getDate()));
