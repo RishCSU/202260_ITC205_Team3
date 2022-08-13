@@ -235,7 +235,9 @@ public class Main {
             String firstName  = getInput("Enter first name: ");
             String lastName = getInput("Enter last name: ");
             String emailAddress = getInput("Enter email address: ");
-            long phoneNumber = Long.valueOf(getInput("Enter phone number: ")).intValue();
+            String userPhoneNumber = "Enter phone number: ";
+            String inputPhoneNumber = getInput(userPhoneNumber);
+            long phoneNumber = Long.valueOf(inputPhoneNumber).intValue();
             Patron patron = library.addPatron(firstName, lastName, emailAddress, phoneNumber);
             displayOutput("\n" + patron + "\n");
             
