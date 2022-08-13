@@ -194,31 +194,31 @@ public class Main {
             String type = getInput(typeMenu);
             
             switch (type.toUpperCase()) {
-            case "B": 
-                itemType = ItemType.BOOK;
-                break;
+                case "B":
+                    itemType = ItemType.BOOK;
+                    break;
+
+                case "D":
+                    itemType = ItemType.DVD;
+                    break;
                 
-            case "D": 
-                itemType = ItemType.DVD;
-                break;
+                case "V":
+                    itemType = ItemType.VHS;
+                    break;
                 
-            case "V": 
-                itemType = ItemType.VHS;
-                break;
+                case "C":
+                    itemType = ItemType.CD;
+                    break;
+
+                case "A":
+                    itemType = ItemType.CASSETTE;
+                    break;
                 
-            case "C": 
-                itemType = ItemType.CD;
-                break;
-                
-            case "A": 
-                itemType = ItemType.CASSETTE;
-                break;
-                
-            case "": 
-                return;
-            
-            default:
-                displayOutput(type + " is not a recognised Item type");
+                case "":
+                    return;
+
+                default:
+                    displayOutput(type + " is not a recognised Item type");
     
             }
         }
