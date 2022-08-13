@@ -64,56 +64,55 @@ public class Main {
                 String choice = getInput(menu);
                 
                 switch (choice.toUpperCase()) {
-                
-                case "AP": 
-                    addPatron();
-                    break;
-                    
-                case "LP": 
-                    listPatrons();
-                    break;
-                    
-                case "AI": 
-                    addItem();
-                    break;
-                    
-                case "LI": 
-                    listItems();
-                    break;
-                    
-                case "FI": 
-                    fixItems();
-                    break;
-                    
-                case "B": 
-                    borrowItem();
-                    break;
-                    
-                case "R": 
-                    returnItem();
-                    break;
-                    
-                case "L": 
-                    listCurrentLoans();
-                    break;
-                    
-                case "P": 
-                    payFines();
-                    break;
-                    
-                case "T": 
-                    incrementDate();
-                    break;
-                    
-                case "Q": 
-                    finished = true;
-                    break;
-                    
-                default: 
-                    displayOutput("\nInvalid option\n");
-                    break;
+                    case "AP":
+                        addPatron();
+                        break;
+
+                    case "LP":
+                        listPatrons();
+                        break;
+
+                    case "AI":
+                        addItem();
+                        break;
+
+                    case "LI":
+                        listItems();
+                        break;
+
+                    case "FI":
+                        fixItems();
+                        break;
+
+                    case "B":
+                        borrowItem();
+                        break;
+
+                    case "R":
+                        returnItem();
+                        break;
+
+                    case "L":
+                        listCurrentLoans();
+                        break;
+
+                    case "P":
+                        payFines();
+                        break;
+
+                    case "T":
+                        incrementDate();
+                        break;
+
+                    case "Q":
+                        finished = true;
+                        break;
+
+                    default:
+                        displayOutput("\nInvalid option\n");
+                        break;
                 }
-                
+
                 Library.save();
             }            
         } catch (RuntimeException e) {
