@@ -225,11 +225,11 @@ public class Main {
     }
     private static void addPatron() {
         try {
-            String FiRsT_NaMe  = getInput("Enter first name: ");
-            String LaSt_NaMe = getInput("Enter last name: ");
-            String EmAiL_AdDrEsS = getInput("Enter email address: ");
-            long PhOnE_NuMbEr = Long.valueOf(getInput("Enter phone number: ")).intValue();
-            Patron patron = library.addPatron(FiRsT_NaMe, LaSt_NaMe, EmAiL_AdDrEsS, PhOnE_NuMbEr);
+            String firstName  = getInput("Enter first name: ");
+            String lastName = getInput("Enter last name: ");
+            String emailAddress = getInput("Enter email address: ");
+            long phoneNumber = Long.valueOf(getInput("Enter phone number: ")).intValue();
+            Patron patron = library.addPatron(firstName, lastName, emailAddress, phoneNumber);
             displayOutput("\n" + patron + "\n");
             
         } catch (NumberFormatException e) {
