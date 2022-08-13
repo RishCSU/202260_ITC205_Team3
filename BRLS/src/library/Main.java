@@ -10,6 +10,7 @@ import library.payfine.pAY_fINE_cONTROL;
 import library.returnBook.ReturnItemUI;
 import library.returnBook.ReturnItemControl;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Scanner;
 
 public class Main {
@@ -59,8 +60,9 @@ public class Main {
             boolean finished = false;
             
             while (!finished) {
-                
-                displayOutput("\n" + simpleDateFormat.format(calendar.getDate()));
+
+                Date date =  calendar.getDate();
+                displayOutput("\n" + simpleDateFormat.format(date));
                 String choice = getInput(menu);
                 
                 switch (choice.toUpperCase()) {
