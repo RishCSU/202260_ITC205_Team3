@@ -172,7 +172,8 @@ public class Main {
             int days = Integer.valueOf(display);
             calendar.incrementDate(days);
             library.updateCurrentLoansStatus();
-            String date = simpleDateFormat.format(calendar.getDate());
+            Date dates =  calendar.getDate();
+            String date = simpleDateFormat.format(dates);
             displayOutput(date);
             
         } catch (NumberFormatException e) {
