@@ -174,9 +174,9 @@ public class Main {
             int days = Integer.valueOf(display);
             calendar.incrementDate(days);
             library.updateCurrentLoansStatus();
-            Date dates =  calendar.getDate();
-            String date = simpleDateFormat.format(dates);
-            displayOutput(date);
+            Date date =  calendar.getDate();
+            String stringSimpleDateFormat = simpleDateFormat.format(date);
+            displayOutput(stringSimpleDateFormat);
             
         } catch (NumberFormatException e) {
              displayOutput("\nInvalid number of days\n");
