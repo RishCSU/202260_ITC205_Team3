@@ -4,9 +4,9 @@ import library.borrowitem.BorrowItemUI;
 import library.borrowitem.bORROW_IteM_cONTROL;
 import library.entities.*;
 import library.fixitem.FixItemUI;
-import library.fixitem.fIX_iTeM_cONTROL;
+import library.fixitem.FixItemControl;
 import library.payfine.PayFineUI;
-import library.payfine.pAY_fINE_cONTROL;
+import library.payfine.PayFineControl;
 import library.returnBook.ReturnItemUI;
 import library.returnBook.ReturnItemControl;
 import java.text.SimpleDateFormat;
@@ -126,8 +126,8 @@ public class Main {
     }    
 
     private static void payFines() {
-        pAY_fINE_cONTROL newPayFineControl = new pAY_fINE_cONTROL();
-        new PayFineUI(newPayFineControl).RuN();
+    	PayFineControl newPayFineControl = new PayFineControl();
+        new PayFineUI(newPayFineControl).run();
     }
 
     private static void listCurrentLoans() {
@@ -162,8 +162,8 @@ public class Main {
     }
 
     private static void fixItems() {
-        fIX_iTeM_cONTROL fixItemControl = new fIX_iTeM_cONTROL();
-        new FixItemUI(fixItemControl).RuN();
+    	FixItemControl fixItemControl = new FixItemControl();
+        new FixItemUI(fixItemControl).run();
     }
 
     private static void incrementDate() {
