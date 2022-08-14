@@ -36,7 +36,7 @@ public class BorrowItemUI {
         while (true) {
             
             switch (uiState) {            
-            
+             
                 case CANCELLED:
                     displayOutput("Borrowing Cancelled");
                     return;
