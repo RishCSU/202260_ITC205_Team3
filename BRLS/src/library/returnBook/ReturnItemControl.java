@@ -49,11 +49,15 @@ public class ReturnItemControl {
         }
         
         ui.display("Inspecting");
-        ui.display(currentBookId.toString());
-        ui.display(currentLoan.toString());
+        String stringCurrentBookId = currentBookId.toString();
+        ui.display(stringCurrentBookId);
+
+        String stringCurrentLoan = currentLoan.toString();
+        ui.display(stringCurrentLoan);
         
         if (currentLoan.isOverDue()) {
-            ui.display(String.format("\nOverdue fine : $%.2f", overDueFine));
+            String stringOverDueFine = String.format("\nOverdue fine : $%.2f", overDueFine);
+            ui.display(stringOverDueFine);
         }
         ui.setInspecting();
         state = ControlState.INSPECTING;
