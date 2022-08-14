@@ -1,7 +1,7 @@
 package library;
 
 import library.borrowitem.BorrowItemUI;
-import library.borrowitem.bORROW_IteM_cONTROL;
+import library.borrowitem.BorrowItemControl;
 import library.entities.*;
 import library.fixitem.FixItemUI;
 import library.fixitem.FixItemControl;
@@ -152,8 +152,8 @@ public class Main {
     }
 
     private static void borrowItem() {
-        bORROW_IteM_cONTROL borrowItemControl = new bORROW_IteM_cONTROL();
-        new BorrowItemUI(borrowItemControl).RuN();
+        BorrowItemControl borrowItemControl = new BorrowItemControl();
+        new BorrowItemUI(borrowItemControl).run();
     }
 
     private static void returnItem() {
