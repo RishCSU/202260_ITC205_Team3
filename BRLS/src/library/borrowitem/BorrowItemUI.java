@@ -11,8 +11,8 @@ public class BorrowItemUI {
     private Scanner scanner;
 
     
-    public BorrowItemUI(BorrowItemControl control) {
-        this.control = control;
+    public BorrowItemUI(BorrowItemControl borrowItemControl) {
+        this.control = borrowItemControl;
         scanner = new Scanner(System.in);
         uiState = BorrowItemUIState.INITIALISED;
         control.setUI(this);
