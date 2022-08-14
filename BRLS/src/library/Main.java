@@ -7,265 +7,255 @@ import library.fixitem.FixItemUI;
 import library.fixitem.FixItemControl;
 import library.payfine.PayFineUI;
 import library.payfine.PayFineControl;
-import library.returnBook.ReturnBookUI;
-import library.returnBook.rETURN_bOOK_cONTROL;
-
+import library.returnBook.ReturnItemUI;
+import library.returnBook.ReturnItemControl;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Scanner;
 
-
 public class Main {
-	
-	private static Scanner SCANNER;
-	private static Library LIBRARY;
-	private static Calendar CALENDAR;
-	private static SimpleDateFormat SIMPLEDATEFORMAT;
-	
-	private static String MENU = """
-		Library Main Menu
-		
-			AP  : add patron
-			LP : list patrons
-		
-			AI  : add item
-			LI : list items
-			FI : fix item
-		
-			B  : borrow an item
-			R  : return an item
-			L  : list loans
-		
-			P  : pay fine
-		
-			T  : increment date
-			Q  : quit
-		
-		Choice : 
-		""";		
+    
+    private static Scanner scanner;
+    private static Library library;
+    private static Calendar calendar;
+    private static SimpleDateFormat simpleDateFormat;
+    
+    private static String menu = """
+        Library Main Menu
+        
+            AP  : add patron
+            LP : list patrons
+        
+            AI  : add item
+            LI : list items
+            FI : fix item
+        
+            B  : borrow an item
+            R  : return an item
+            L  : list loans
+        
+            P  : pay fine
+        
+            T  : increment date
+            Q  : quit
+        
+        Choice : 
+        """;        
 
-	
-	public static void main(String[] args) {		
-		try {			
-			SCANNER = new Scanner(System.in);
-			LIBRARY = Library.getInstance();
-			CALENDAR = Calendar.getInstance();
-			SIMPLEDATEFORMAT = new SimpleDateFormat("dd/MM/yyyy");
-	
-			for (Patron PAtrON : LIBRARY.listPatrons()) {
-				output(PAtrON);
-			}
-			output(" ");
-			for (Item iTEm : LIBRARY.listItems()) {
-				output(iTEm);
-			}
-						
-			boolean fInIsHeD = false;
-			
-			while (!fInIsHeD) {
-				
-				output("\n" + SIMPLEDATEFORMAT.format(CALENDAR.getDate()));
-				String ChOiCe = input(MENU);
-				
-				switch (ChOiCe.toUpperCase()) {
-				
-				case "AP": 
-					ADD_PATRON();
-					break;
-					
-				case "LP": 
-					LIST_PATRONS();
-					break;
-					
-				case "AI": 
-					ADD_ITEM();
-					break;
-					
-				case "LI": 
-					LIST_ITEMS();
-					break;
-					
-				case "FI": 
-					FIX_ITEMS();
-					break;
-					
-				case "B": 
-					BORROW_ITEM();
-					break;
-					
-				case "R": 
-					RETURN_ITEM();
-					break;
-					
-				case "L": 
-					LIST_CURRENT_LOANS();
-					break;
-					
-				case "P": 
-					PAY_FINES();
-					break;
-					
-				case "T": 
-					INCREMENT_DATE();
-					break;
-					
-				case "Q": 
-					fInIsHeD = true;
-					break;
-					
-				default: 
-					output("\nInvalid option\n");
-					break;
-				}
-				
-				Library.save();
-			}			
-		} catch (RuntimeException e) {
-			output(e);
-		}		
-		output("\nEnded\n");
-	}	
+    public static void main(String[] args) {        
+        try {            
+            scanner = new Scanner(System.in);
+            library = Library.getInstance();
+            calendar = Calendar.getInstance();
+            simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+    
+            for (Patron patron : library.listPatrons()) {
+                displayOutput(patron);
+            }
+            displayOutput(" ");
+            for (Item item : library.listItems()) {
+                displayOutput(item);
+            }
+                        
+            boolean finished = false;
+            
+            while (!finished) {
 
-	
-	private static void PAY_FINES() {
-		new PayFineUI(new PayFineControl()).run();		
-	}
+                Date date =  calendar.getDate();
 
+                String stringSimpleDateFormat = simpleDateFormat.format(date);
+                displayOutput("\n" + stringSimpleDateFormat);
+                String choice = getInput(menu);
+                
+                switch (choice.toUpperCase()) {
+                    case "AP":
+                        addPatron();
+                        break;
 
-	private static void LIST_CURRENT_LOANS() {
-		output("");
-		for (Loan loan : LIBRARY.listCurrentLoans()) {
-			output(loan + "\n");
-		}		
-	}
+                    case "LP":
+                        listPatrons();
+                        break;
 
+                    case "AI":
+                        addItem();
+                        break;
 
+                    case "LI":
+                        listItems();
+                        break;
 
-	private static void LIST_ITEMS() {
-		output("");
-		for (Item book : LIBRARY.listItems()) {
-			output(book + "\n");
-		}		
-	}
+                    case "FI":
+                        fixItems();
+                        break;
 
+                    case "B":
+                        borrowItem();
+                        break;
 
+                    case "R":
+                        returnItem();
+                        break;
 
-	private static void LIST_PATRONS() {
-		output("");
-		for (Patron member : LIBRARY.listPatrons()) {
-			output(member + "\n");
-		}		
-	}
+                    case "L":
+                        listCurrentLoans();
+                        break;
 
+                    case "P":
+                        payFines();
+                        break;
 
+                    case "T":
+                        incrementDate();
+                        break;
 
-	private static void BORROW_ITEM() {
-		new BorrowItemUI(new bORROW_IteM_cONTROL()).RuN();		
-	}
+                    case "Q":
+                        finished = true;
+                        break;
 
+                    default:
+                        displayOutput("\nInvalid option\n");
+                        break;
+                }
 
-	private static void RETURN_ITEM() {
-		new ReturnBookUI(new rETURN_bOOK_cONTROL()).RuN();		
-	}
+                Library.save();
+            }            
+        } catch (RuntimeException e) {
+            displayOutput(e);
+        }        
+        displayOutput("\nEnded\n");
+    }    
 
+    private static void payFines() {
+    	PayFineControl newPayFineControl = new PayFineControl();
+        new PayFineUI(newPayFineControl).run();
+    }
 
-	private static void FIX_ITEMS() {
-		new FixItemUI(new FixItemControl()).run();		
-	}
+    private static void listCurrentLoans() {
+        displayOutput("");
+        for (Loan loan : library.listCurrentLoans()) {
+            displayOutput(loan + "\n");
+        }        
+    }
 
+    private static void listItems() {
+        displayOutput("");
+        for (Item book : library.listItems()) {
+            displayOutput(book + "\n");
+        }        
+    }
 
-	private static void INCREMENT_DATE() {
-		try {
-			int days = Integer.valueOf(input("Enter number of days: ")).intValue();
-			CALENDAR.incrementDate(days);
-			LIBRARY.updateCurrentLoansStatus();
-			output(SIMPLEDATEFORMAT.format(CALENDAR.getDate()));
-			
-		} catch (NumberFormatException e) {
-			 output("\nInvalid number of days\n");
-		}
-	}
+    private static void listPatrons() {
+        displayOutput("");
+        for (Patron member : library.listPatrons()) {
+            displayOutput(member + "\n");
+        }        
+    }
 
+    private static void borrowItem() {
+        bORROW_IteM_cONTROL borrowItemControl = new bORROW_IteM_cONTROL();
+        new BorrowItemUI(borrowItemControl).RuN();
+    }
 
-	private static void ADD_ITEM() {
-		
-		ItemType itemType = null;
-		String typeMenu = """
-			Select item type:
-			    B : Book
-			    D : DVD video disk
-			    V : VHS video cassette
-			    C : CD audio disk
-			    A : Audio cassette
-			   Choice <Enter quits> : """;
+    private static void returnItem() {
+        ReturnItemControl returnItemControl = new ReturnItemControl();
+        new ReturnItemUI(returnItemControl).run();
+    }
 
-		while (itemType == null) {
-			String type = input(typeMenu);
-			
-			switch (type.toUpperCase()) {
-			case "B": 
-				itemType = ItemType.BOOK;
-				break;
-				
-			case "D": 
-				itemType = ItemType.DVD;
-				break;
-				
-			case "V": 
-				itemType = ItemType.VHS;
-				break;
-				
-			case "C": 
-				itemType = ItemType.CD;
-				break;
-				
-			case "A": 
-				itemType = ItemType.CASSETTE;
-				break;
-				
-			case "": 
-				return;
-			
-			default:
-				output(type + " is not a recognised Item type");
-	
-			}
-		}
+    private static void fixItems() {
+    	FixItemControl fixItemControl = new FixItemControl();
+        new FixItemUI(fixItemControl).run();
+    }
 
-		String AuThOr = input("Enter author: ");
-		String TiTlE  = input("Enter title: ");
-		String CaLl_NuMbEr = input("Enter call number: ");
-		Item BoOk = LIBRARY.addItem(AuThOr, TiTlE, CaLl_NuMbEr, itemType);
-		output("\n" + BoOk + "\n");
-		
-	}
+    private static void incrementDate() {
+        try {
 
-	
-	private static void ADD_PATRON() {
-		try {
-			String FiRsT_NaMe  = input("Enter first name: ");
-			String LaSt_NaMe = input("Enter last name: ");
-			String EmAiL_AdDrEsS = input("Enter email address: ");
-			long PhOnE_NuMbEr = Long.valueOf(input("Enter phone number: ")).intValue();
-			Patron PaTrOn = LIBRARY.addPatron(FiRsT_NaMe, LaSt_NaMe, EmAiL_AdDrEsS, PhOnE_NuMbEr);
-			output("\n" + PaTrOn + "\n");
-			
-		} catch (NumberFormatException e) {
-			 output("\nInvalid phone number\n");
-		}
-		
-	}
+            String prompt = "Enter number of days: ";
+            String display = getInput(prompt);
+            int days = Integer.valueOf(display);
+            calendar.incrementDate(days);
+            library.updateCurrentLoansStatus();
+            Date date =  calendar.getDate();
+            String stringSimpleDateFormat = simpleDateFormat.format(date);
+            displayOutput(stringSimpleDateFormat);
+            
+        } catch (NumberFormatException e) {
+             displayOutput("\nInvalid number of days\n");
+        }
+    }
 
+    private static void addItem() {
+        
+        ItemType itemType = null;
+        String typeMenu = """
+            Select item type:
+                B : Book
+                D : DVD video disk
+                V : VHS video cassette
+                C : CD audio disk
+                A : Audio cassette
+               Choice <Enter quits> : """;
 
-	private static String input(String prompt) {
-		System.out.print(prompt);
-		return SCANNER.nextLine();
-	}
-	
-	
-	
-	private static void output(Object object) {
-		System.out.println(object);
-	}
+        while (itemType == null) {
+            String type = getInput(typeMenu);
+            
+            switch (type.toUpperCase()) {
+                case "B":
+                    itemType = ItemType.BOOK;
+                    break;
 
-	
+                case "D":
+                    itemType = ItemType.DVD;
+                    break;
+                
+                case "V":
+                    itemType = ItemType.VHS;
+                    break;
+                
+                case "C":
+                    itemType = ItemType.CD;
+                    break;
+
+                case "A":
+                    itemType = ItemType.CASSETTE;
+                    break;
+                
+                case "":
+                    return;
+
+                default:
+                    displayOutput(type + " is not a recognised Item type");
+    
+            }
+        }
+
+        String author = getInput("Enter author: ");
+        String title  = getInput("Enter title: ");
+        String callNumber = getInput("Enter call number: ");
+        Item BoOk = library.addItem(author, title, callNumber, itemType);
+        displayOutput("\n" + BoOk + "\n");
+        
+    }
+    private static void addPatron() {
+        try {
+            String firstName  = getInput("Enter first name: ");
+            String lastName = getInput("Enter last name: ");
+            String emailAddress = getInput("Enter email address: ");
+            String userPhoneNumber = "Enter phone number: ";
+            String inputPhoneNumber = getInput(userPhoneNumber);
+            long phoneNumber = Long.valueOf(inputPhoneNumber).intValue();
+            Patron patron = library.addPatron(firstName, lastName, emailAddress, phoneNumber);
+            displayOutput("\n" + patron + "\n");
+            
+        } catch (NumberFormatException e) {
+             displayOutput("\nInvalid phone number\n");
+        }
+        
+    }
+    private static String getInput(String prompt) {
+        System.out.print(prompt);
+        return scanner.nextLine();
+    }
+    private static void displayOutput(Object object) {
+        System.out.println(object);
+    }
 }
