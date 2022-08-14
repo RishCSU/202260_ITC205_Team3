@@ -62,7 +62,9 @@ public class Main {
             while (!finished) {
 
                 Date date =  calendar.getDate();
-                displayOutput("\n" + simpleDateFormat.format(date));
+
+                String stringSimpleDateFormat = simpleDateFormat.format(date);
+                displayOutput("\n" + stringSimpleDateFormat);
                 String choice = getInput(menu);
                 
                 switch (choice.toUpperCase()) {
